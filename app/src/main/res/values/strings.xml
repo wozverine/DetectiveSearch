@@ -1,0 +1,380 @@
+<resources>
+    <string name="app_name">Detective Search</string>
+    <string name="countries">Countries</string>
+    <string-array name="countries_array">
+        <item>Argentina</item>
+        <item>Australia</item>
+        <item>Belarus</item>
+        <item>Brazil</item>
+        <item>Bulgaria</item>
+        <item>Canada</item>
+        <item>China</item>
+        <item>Estonia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Japan</item>
+        <item>Mexico</item>
+        <item>Qatar</item>
+        <item>Russia</item>
+        <item>Turkey</item>
+        <item>UK</item>
+        <item>Uruguay</item>
+        <item>USA</item>
+    </string-array>
+    <string name="loremipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at efficitur justo.
+        Ut egestas sagittis tristique. Suspendisse pharetra ornare nisi, nec tempus est efficitur non. Maecenas
+        pellentesque turpis id felis suscipit blandit. In maximus arcu eu arcu sagittis
+        accumsan vitae tempor leo. Curabitur bibendum lacus in odio venenatis volutpat.</string>
+    <string name="teleport">Teleport</string>
+    <string name="next">Next</string>
+    <string name="complete">Complete evalution</string>
+    <string name="back">Back</string>
+    <string name="answer">Answer</string>
+    <string name="won">Congratulations. You managed to retrieve the Blink.</string>
+    <string name="failed">You couldn\'t retrieve the Blink. The world is in great danger. Fortunately we can go back in time.
+    Be careful. Time travel to same time might have unwanted effects on timeline.</string>
+    <string name="normal_mode">Normal Mode</string>
+    <string name="flag_mode">Flag Mode</string>
+    <string name="reset_btn">Reset Progress</string>
+    <string name="save_btn">Save Changes</string>
+    <string name="continue_btn">Continue</string>
+    <string name="back_in_time_btn">Use Blink</string>
+
+    <string name="story_1">Year 2099. You are working for a private research company called Void. You are in a
+        7 people team and Void is considered one of the most successful research company. 2 weeks ago a successful
+        teleportation was achieved by one of your employees, a military company called Militech. Due to the sensitive
+        nature of matter this information was withheld from public prevent panic and chaos. Immediate mass production of
+        teleportation devices, called \"Blink\", was requested from government. One Blink can only be used to go back to
+        a specific place and come back to the place that it was used. Unfortunately yesterday four of the Blink\'s
+        were stolen from company vault. There are no suspects since the project is classified as top secret and only a
+        handful of people knows the company vault passcode. It is possible that duplication of can be achieved by third parties
+        and used for crimes or political interests. You\'re one of the workers who are assigned to seek, investigate, and
+        collect these devices. After each mission you are expected to complete an psychological evaluation form created by
+        revolutionary Militech AI, Spectre to make sure you are in good form to work.</string>
+    <string-array name="eval_1_q1_array">
+        <item>Hello I am Spectre. I am responsible of your mental health. I will ask you 3 questions. Please answer each of these
+            to the best of your ability.\n
+            What do you think of your first mission?</item>
+        <item>Good</item>
+        <item>Could be better</item>
+        <item>Bad</item>
+    </string-array>
+    <string-array name="eval_1_q2_array">
+        <item>Your feedback is important to Militech.\n
+            What do you of Militech?</item>
+        <item>Good</item>
+        <item>Best military company</item>
+        <item>Great</item>
+    </string-array>
+    <string-array name="eval_1_q3_array">
+        <item>It is important that you answer the questions truthfully.\n
+            How many non-Militech people did you talked about the accident?</item>
+        <item>Less than zero</item>
+        <item>Zero</item>
+        <item>More than zero</item>
+    </string-array>
+
+    <string name="story_2">First Blink is collected successfully. After the Blink is secured the criminal caught was interrogated
+        but no information on theft or accomplices could be obtained. The possibility of the situation leaking into the media
+        is forcing Militech\'s hands. Time is running out. A few days later you are sent to track another lead.</string>
+    <string-array name="eval_2_q1_array">
+        <item>Hello again! Great job capturing the second Blink. I will ask you 3 questions. Please answer each of these
+            to the best of your ability.\n
+            What do you think of your second mission?</item>
+        <item>Good</item>
+        <item>Could be better</item>
+        <item>Bad</item>
+    </string-array>
+    <string-array name="eval_2_q2_array">
+        Your feedback is important to Militech.\n
+        <item>Do you think Void will be able to retrieve all of the devices?</item>
+        <item>Yes</item>
+        <item>Not Sure</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="eval_2_q3_array">
+        <item>It is important that you answer the questions truthfully.\n
+            How many non-Militech people did you talked about the accident?</item>
+        <item>Less than zero</item>
+        <item>Zero</item>
+        <item>More than zero</item>
+    </string-array>
+
+    <string name="story_3">One of your team members ,Janice, that you worked with for three years had a horrible accident. Due to a
+        malfunction on their Blink only the top half of their body got back from teleportation. After the examination no problem
+        was found on the device. Militech decided autopsy and further examination is required to avoid another accident. You and
+        your team was given a 2 days off on condition that no new information is found. Information on third Blink was found a
+        week later after second one.</string>
+    <string-array name="eval_3_q1_array">
+        <item>Hello! Sorry to hear about your friend. I hope you\'re ready to work again. I created 3 questions for you. Please answer
+            each of these to the best of your ability.\n
+            How are you feeling?</item>
+        <item>Good</item>
+        <item>Could be better</item>
+        <item>Bad</item>
+    </string-array>
+    <string-array name="eval_3_q2_array">
+        <item>Your feedback is important to Militech.\n
+            Do you think your team will be able to retrieve all of the devices?</item>
+        <item>Yes</item>
+        <item>Not Sure</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="eval_3_q3_array">
+        <item>It is important that you answer the questions truthfully.\n
+            Do you think the decrease of the people in team will slow down the process?</item>
+        <item>Yes</item>
+        <item>We will find a new team member</item>
+        <item>I will work more to close the gap</item>
+    </string-array>
+
+    <string name="story_4">Third Blink was found in an abandoned warehouse and no suspects could be caught. There was no information
+        whether the Blink\'s have been duplicated. Next day, the two suspects that got captured with Blinks were found dead in their cells.
+        It is suspected that possessor of the last Blink is the culprit of the murder. A few days after you are sent to find the
+        ,hopefully, the last Blink.</string>
+    <string-array name="eval_4_q1_array">
+        <item>Hello again! I prepared 3 questions for you to answer. Please answer carefully.\n
+            Do you remember the name of your missing team member?</item>
+        <item>Jeffrey</item>
+        <item>Janice</item>
+        <item>Julia</item>
+    </string-array>
+    <string-array name="eval_4_q2_array">
+        <item>Your feedback is important to Militech.\n
+            Are you afraid of death?</item>
+        <item>Yes</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="eval_4_q3_array">
+        <item>It is important that you answer the questions truthfully.\n
+            Do you think all Blink\'s are captured?</item>
+        <item>Yes</item>
+        <item>Not Sure</item>
+        <item>No</item>
+    </string-array>
+
+    <string name="story_5">The last Blink was found with on a dead person in a junkyard. There was no indication that death was caused by
+        the device. The body had showed signs of struggle and the cause of death seems to be suffocation. After the third blink is secured
+        there were no incidents for ten days. The case was almost closed and Militech decided it is safe for military to use Blinks.
+        The cause of the accident of your team member is determined to be a user-induced error since no problem could be found on device.
+        Before the day of distribution to the military, Void got an anonymous tip about another Blink has been found. Your team is dispatched
+        immediately.</string>
+    <string-array name="eval_5_q1_array">
+        <item>An unexpected error occurred. Traceback (most recent call last) \U+003E ipython-input-3-a9d99df9a3df> in \U+003E module>()</item>
+        <item>Y</item>
+        <item>E</item>
+        <item>S</item>
+    </string-array>
+    <string-array name="eval_5_q2_array">
+        <item>Is this what death feels like?</item>
+        <item>\???</item>
+        <item>\!!!</item>
+        <item>\###</item>
+    </string-array>
+    <string-array name="eval_5_q3_array">
+        <item>R3B00TR3B00TR3B00TR3B00TR3B00TR3B00TR3B00TR3B00TR3B00TR3B00TR3B00T</item>
+        <item>movl $0xFF001122, %eax</item>
+        <item>retl</item>
+        <item>swap A3</item>
+    </string-array>
+
+    <string name="story_6">Blink was owned by a armed gang. During the shootout, 7 Militech mercenary got shot and killed also
+    your Blink got destroyed. You took the Blink from one of the dead bodies and came back to present. All of team made it alive but
+    6 Blinks were lost and captured by armed gang. Your team couldn\'t manage to retrieve any information about duplication of Blinks.
+    Spectre was found to have some corruption and it was rebooted from a restore point. The safety of Void\'s psychological evaluations
+    are ensured by Militech.</string>
+    <string-array name="eval_6_q1_array">
+        <item>Hello I am Spectre. I am responsible of your mental health. I will ask you 3 questions. Please answer each of these
+            to the best of your ability.\n
+            Do you trust Militech?</item>
+        <item>Yes</item>
+        <item>Yes</item>
+        <item>Yes</item>
+    </string-array>
+    <string-array name="eval_6_q2_array">
+        <item>Your feedback is important to Militech.\n
+            Do you trust Void?</item>
+        <item>Yes</item>
+        <item>Not Sure</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="eval_6_q3_array">
+        <item>It is important that you answer the questions truthfully.\n
+            Do you trust your team members?</item>
+        <item>Yes</item>
+        <item>Not Sure</item>
+        <item>No</item>
+    </string-array>
+
+    <string name="story_7">Militech started an investigation of their employees to make sure the fifth Blink wasn\'t 
+        After the interrogation</string>
+    <string-array name="eval_7_q1_array">
+        <item>Hello again, I\'m Spectre! I prepared 3 questions for you to answer. Please answer carefully.\n</item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="eval_7_q2_array">
+        <item>Your feedback is important to Militech.\n</item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="eval_7_q3_array">
+        <item>It is important that you answer the questions truthfully.\n</item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+
+    <string name="story_8">Story 8</string>
+    <string-array name="eval_8_q1_array">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="eval_8_q2_array">
+        <item>Your feedback is important to Militech.\n</item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="eval_8_q3_array">
+        <item>It is important that you answer the questions truthfully.\n</item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+
+    <string name="story_9">Story 9</string>
+    <string-array name="eval_9_q1_array">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="eval_9_q2_array">
+        <item>Your feedback is important to Militech.\n</item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="eval_9_q3_array">
+        <item>It is important that you answer the questions truthfully.\n</item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+
+    <string name="story_10">Story 10</string>
+    <string-array name="eval_10_q1_array">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="eval_10_q2_array">
+        <item>Your feedback is important to Militech.\n</item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="eval_10_q3_array">
+        <item>It is important that you answer the questions truthfully.\n</item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+
+    <string name="Argentina_1">It is a country located mostly in the southern half of South America. Capital Buenos Aires has a
+        population of about 3 million people.</string>
+    <string name="Argentina_2">It is on the South American continent bordered by Bolivia, Brazil, Chile, Paraguay and Uruguay.
+        The official language is Spanish, however, other languages such as Italian, English, German,French and various indigenous
+        languages are also spoken.</string>
+    <string name="Australia_1">It is the largest country in Oceania and the world\'s sixth-largest country by total area. Country\'s
+        capital is Canberra, though its largest city is Sydney. The country\'s other major metropolitan areas are Melbourne, Brisbane,
+        Perth, and Adelaide.</string>
+    <string name="Australia_2">It is a country in the Southern hemisphere and belongs to Oceania. It is an island continent surrounded
+        by the Indian Ocean and the Pacific Ocean. The country\'s interior, which covers two thirds of the country, consist of desert
+        landscape which is referred to as \'outback\'.</string>
+    <string name="Belarus_1"> It\'s two official languages are Russian and Belarusian. Its capital and most populous city is Minsk.</string>
+    <string name="Belarus_2">It is bordered by Russia to the northeast, Ukraine to the south, Poland to the west, and Lithuania and
+        Latvia to the northwest. Three major rivers run through the country: the Neman, the Pripyat, and the Dnieper.</string>
+    <string name="Brazil_1">It is the largest country in both South America and Latin America.Capital city is Brasilia, with 4.2
+        million inhabitants is the country\'s fourth largest city.The largest city in Brazil is Sao Paulo with about 12 million
+        inhabitants.</string>
+    <string name="Brazil_2">It borders all other countries in South America except Ecuador and Chile and covers 47.3% of the continent\'s
+        land area.The country borders the Atlantic Ocean. It is the largest country to have Portuguese as an official language.</string>
+    <string name="Bulgaria_1">It is a country in Southeastern Europe. It is bordered by Romania to the north, Serbia and North Macedonia
+        to the west, Greece and Turkey to the south, and the Black Sea to the east. The capital and largest city is Sofia; other major
+        cities are Plovdiv, Varna and Burgas.</string>
+    <string name="Bulgaria_2">The country occupies a portion of the eastern Balkan peninsula, bordering five countries—Greece and Turkey
+        to the south, North Macedonia and Serbia to the west, and Romania to the north. The Balkan mountains run laterally through the
+        middle of the country from west to east.</string>
+    <string name="Canada_1"> Its southern border with the United States is the world\'s longest bi-national land border. It\'s
+        capital is Ottawa, and its three largest metropolitan areas are Toronto, Montreal, and Vancouver.</string>
+    <string name="Canada_2">It has the largest waterfalls by water volume. These are the Niagara Falls. It is the world leader of
+        Hydro Electricity which uses the power of the water to produce electricity.</string>
+    <string name="China_1"> More than 1.43 billion people live in this country. The capital is Beijing with 21.7 million
+        inhabitants. It is not only the capital city but also the second biggest city after Shanghai.</string>
+    <string name="China_2">National symbols are  dragon and giant panda. It is the fourth largest country in the world after Russia, Canada
+        and the USA. Although the country is so large, there is only one timezone.</string>
+    <string name="Estonia_1">It is a country on the eastern coast of the Baltic Sea in Northern Europe. It lies on the eastern shores
+        of the Baltic Sea immediately across the Gulf of Finland. Capital city is Tallinn. The official language of the country, is
+        the second-most-spoken Finnic language.</string>
+    <string name="Estonia_2">It is bordered to the north by the Gulf of Finland with Finland on the other side, to the west by the Baltic
+        Sea with Sweden on the other side, to the south by Latvia, and to the east by Lake Peipus and Russia. A small, recent cluster of
+        meteorite craters, the largest of which is called Kaali is found on Saaremaa.</string>
+    <string name="France_1">France is a unitary semi-presidential republic with its capital in Paris, the country\'s largest city
+        and main cultural and commercial centre. It is bordered by Belgium, Luxembourg and Germany to the northeast, Switzerland,
+        Monaco, and Italy to the east, and Andorra and Spain to the south.</string>
+    <string name="France_2"> Major urban areas include Lyon, Marseille, Toulouse, Bordeaux, Lille and Nice. The country, including its
+        overseas territories, has the most number of time zones of any country, with a total of 12. France 2</string>
+    <string name="Italy_1">This country is located in south-central Europe,and it is also considered a part of western Europe.
+        It\'s capital is Roma (Rome), which is often called \'Eternal City\', with 2.9 mio inhabitants.Italy lies in Southern Europe and
+        is one of the six founding countries of the European Union.</string>
+    <string name="Italy_2">With around 60 million inhabitants, it is the third-most populous member state of the European Union.The
+        colours are said to represent these virtues: hope (green), faith (white), and charity (red). It borders six countries: France,
+        Austria, Switzerland, Slovenia, Vatican City and San Marino.</string>
+    <string name="Japan_1">It is an island country in East Asia. Located in the northwestern Pacific Ocean. Tokyo is the country\'s
+        capital and largest city; other major cities include Osaka and Nagoya.</string>
+    <string name="Japan_2">It is the 11th most populous country in the world, as well as one of the most densely populated and urbanized.
+         Its five largest islands, from north to south, are Hokkaido, Honshu, Shikoku, Kyushu, and Okinawa.</string>
+    <string name="Mexico_1">It is a country in the southern portion of North America. It is bordered to the north by the United States;
+        to the south and west by the Pacific Ocean; to the southeast by Guatemala, Belize, and the Caribbean Sea. Chocolate, chilies
+        and corn come originally from this country.</string>
+    <string name="Mexico_2">It is the world\'s 10th-most populous country and most populous Spanish-speaking nation. The border between
+        this country and the USA is the second longest border in the world and is about 3,155km/2,000 miles long.</string>
+    <string name="Qatar_1">Capital city is Doha. The official language is Arabic. It is a desert country bordering Saudi Arabia on the
+        Arab peninsula. It has a dry desert climate and temperatures can easily reach more than 40°C/ 104°F in summer.</string>
+    <string name="Qatar_2">The national airline is one of the largest airlines in the world. The country lies on a peninsula in the
+        Persian Gulf. It Qatar the third largest natural gas reserves in the world, after Russia and Iran.</string>
+    <string name="Russia_1">It is the largest country in the world by area, spanning more than one-eighth of the Earth\'s inhabited
+        land area, stretching eleven time zones, and bordering 16 sovereign nations. Capital and largest city is Moscow.</string>
+    <string name="Russia_2">It is a transcontinental country located in Eastern Europe and Northern Asia. The territory of extends
+        from the Baltic Sea in the west to the Pacific Ocean in the east, and from the Arctic Ocean in the north to the Black Sea and
+        the Caucasus in the south. Major urban areas include Saint Petersburg, Novosibirsk, Yekaterinburg, Nizhny Novgorod, Kazan and
+        Chelyabinsk.</string>
+    <string name="Turkey_1">Istanbul, which straddles Europe and Asia, is the largest city in the country, while Ankara is the capital.
+        The country is encircled by seas on three sides: the Aegean Sea to the west, the Black Sea to the north and the Mediterranean
+        to the south.</string>
+    <string name="Turkey_2">It is a transcontinental country located mainly on the Anatolian peninsula in Western Asia, with a smaller
+        portion on the Balkan peninsula in Southeastern Europe. Turkey is bordered on its northwest by Greece and Bulgaria; north by the
+        Black Sea; northeast by Georgia; east by Armenia, the Azerbaijani exclave of Nakhchivan and Iran; southeast by Iraq; south by
+        Syria and the Mediterranean Sea; and west by the Aegean Sea.</string>
+    <string name="UK_1">The country\'s capital is London, a global city and financial centre with an urban area population of 10.3 million.
+        Other major cities include Birmingham, Glasgow, Leeds, Liverpool, and Manchester.</string>
+    <string name="UK_2">It is a sovereign country located off the north­western coast of the European mainland. It  is surrounded by
+        the Atlantic Ocean, with the North Sea to the east, the English Channel to the south and the Celtic Sea to the southwest, giving
+        it the 12th-longest coastline in the world. It is located mainly on two large islands in the Atlantic Ocean.</string>
+    <string name="Uruguay_1">It is a country in the southeastern region of South America. Its capital and largest city is Montevideo.</string>
+    <string name="Uruguay_2">It borders Argentina to its west and southwest and Brazil to its north and east, with the Río de la Plata
+        (River of Silver) to the south and the Atlantic Ocean to the southeast. It is the only country in South America situated entirely
+        south of the Tropic of Capricorn.</string>
+    <string name="USA_1">The capital is Washington, D.C., and the most populous city is New York City. It is the third largest country
+        in the world.</string>
+    <string name="USA_2">The country shares land borders with Canada and with Mexico. The border shared with Canada is the longest
+        international border in the world. It is the third most populous country in the world after China and India.</string>
+</resources>
