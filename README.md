@@ -4,7 +4,7 @@ I made this app in 2020 using Java and activities. I decided to convert the code
 <h3>In progress...</h3>
 <br></br>
 
- ## Screens
+ ## Java Screens - 2020
 | Cases | Story | Questions |
 | ------ | ---- | ------ |
 |![image](https://github.com/wozverine/DetectiveSearch/assets/23726873/2de226d7-4c61-43b3-a54f-8320c6ce7f4e)|![image](https://github.com/wozverine/DetectiveSearch/assets/23726873/bffc9592-15b1-4b8d-a9b9-6edef7d94947)|![image](https://github.com/wozverine/DetectiveSearch/assets/23726873/2481f77c-606b-4488-8cd8-14ebe7b4272a)|
