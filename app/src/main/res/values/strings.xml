@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Detective Search</string>
     <string name="countries">Countries</string>
+    <string name="start">Start</string>
+    <string name="options">Options</string>
+
+
+
     <string-array name="countries_array">
         <item>Argentina</item>
         <item>Australia</item>
