@@ -1,122 +1,119 @@
-package com.glitch.detectivesearch;
+package com.glitch.detectivesearch.ui
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import com.glitch.detectivesearch.R
+import com.glitch.detectivesearch.databinding.ActivityMainBinding
+/*import com.google.gson.Gson
+import java.lang.reflect.Type
+import java.util.Collections*/
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+class MainActivity : AppCompatActivity() {
+	private lateinit var appBarConfiguration: AppBarConfiguration
+	private lateinit var binding: ActivityMainBinding
+	/*var start_btn: Button? = null
+	var options_btn: Button? = null*/
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
 
-import com.glitch.detectivesearch.R;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+		binding = ActivityMainBinding.inflate(layoutInflater)
+		setContentView(R.layout.activity_main)
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Collections;
 
-public class MainActivity extends AppCompatActivity {
-    Button start_btn;
-    Button options_btn;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        start_btn=findViewById(R.id.start_btn);
-        options_btn=findViewById(R.id.options_btn);
-        final int CASE_COUNT=10;
-        saveData(CASE_COUNT,"case_count");
-        final String PREFS_NAME = "MyPrefsFile";
+		setSupportActionBar(binding.toolbar)
 
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+		val navHostFragment =
+			supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
+		val navController = navHostFragment.navController
 
-        if (settings.getBoolean("my_first_time", true)) {
-            //the app is being launched for first time, do something
-            Log.d("Comments", "First time");
-            String arr[]=new String[CASE_COUNT];
-            String arr_evals[]=new String[CASE_COUNT];
-            arr[0]="true";
-            arr_evals[0]="false";
-            for(int c=1;c<CASE_COUNT;c++){
-                arr[c]="false";
-                arr_evals[c]="false";
-            }
+		appBarConfiguration = AppBarConfiguration(navController.graph)
+		setupActionBarWithNavController(navController, appBarConfiguration)
 
-            ArrayList<String> list_cases = new ArrayList<String>();
-            Collections.addAll(list_cases, arr);
-            saveArrayList(list_cases,"cases_enabled");
-            saveData(0,"mode");
-            saveData(0,"easy");
-            saveData(1,"photo");
-            //saveData(CASE_COUNT,"case_count");
+		/*start_btn = findViewById<Button>(R.id.start_btn)
+		options_btn = findViewById<Button>(R.id.options_btn)
+		val CASE_COUNT = 10
+		saveData(CASE_COUNT, "case_count")
+		val PREFS_NAME = "MyPrefsFile"
+		val settings: SharedPreferences = getSharedPreferences(PREFS_NAME, 0)
+		if (settings.getBoolean("my_first_time", true)) {
+			//the app is being launched for first time, do something
+			Log.d("Comments", "First time")
+			val arr = arrayOfNulls<String>(CASE_COUNT)
+			val arr_evals = arrayOfNulls<String>(CASE_COUNT)
+			arr[0] = "true"
+			arr_evals[0] = "false"
+			for (c in 1 until CASE_COUNT) {
+				arr[c] = "false"
+				arr_evals[c] = "false"
+			}
+			val list_cases = ArrayList<String>()
+			Collections.addAll(list_cases, *arr)
+			saveArrayList(list_cases, "cases_enabled")
+			saveData(0, "mode")
+			saveData(0, "easy")
+			saveData(1, "photo")
+			//saveData(CASE_COUNT,"case_count");
+			val list_evals = ArrayList<String>()
+			Collections.addAll(list_evals, *arr_evals)
+			saveArrayList(list_evals, "evals_enabled")
 
-            ArrayList<String> list_evals = new ArrayList<String>();
-            Collections.addAll(list_evals, arr_evals);
-            saveArrayList(list_evals,"evals_enabled");
+			// record the fact that the app has been started at least once
+			settings.edit().putBoolean("my_first_time", false).apply()
+		}
+		val cases = getArrayList("cases_enabled")
+		val cases_enabled = arrayOfNulls<String>(cases.size)
+		cases.toArray(cases_enabled)
+		val evals = getArrayList("evals_enabled")
+		val evals_enabled = arrayOfNulls<String>(evals.size)
+		evals.toArray(evals_enabled)
+		start_btn!!.setOnClickListener {
+			val myIntent = Intent(this@MainActivity, CasesActivity::class.java)
+			val string_array_bundle = Bundle()
+			string_array_bundle.putStringArray("cases_enabled", cases_enabled)
+			string_array_bundle.putStringArray("evals_enabled", evals_enabled)
+			myIntent.putExtras(string_array_bundle)
+			startActivity(myIntent)
+		}
+		options_btn!!.setOnClickListener {
+			val myIntent = Intent(this@MainActivity, OptionsActivity::class.java)
+			startActivity(myIntent)
+		}
+	}
 
-            // record the fact that the app has been started at least once
-            settings.edit().putBoolean("my_first_time", false).apply();
-        }
+	fun saveArrayList(list: ArrayList<String>?, key: String?) {
+		val prefs: SharedPreferences =
+			PreferenceManager.getDefaultSharedPreferences(this@MainActivity)
+		val editor: SharedPreferences.Editor = prefs.edit()
+		val gson = Gson()
+		val json: String = gson.toJson(list)
+		editor.putString(key, json)
+		editor.apply()
+	}
 
-        ArrayList<String> cases=getArrayList("cases_enabled");
-        final String[] cases_enabled=new String[cases.size()];
-        cases.toArray(cases_enabled);
+	fun getArrayList(key: String?): ArrayList<String> {
+		val prefs: SharedPreferences =
+			PreferenceManager.getDefaultSharedPreferences(this@MainActivity)
+		val gson = Gson()
+		val json: String = prefs.getString(key, null)
+		val type: Type = object : TypeToken<ArrayList<String?>?>() {}.getType()
+		return gson.fromJson(json, type)
+	}
 
-        ArrayList<String> evals=getArrayList("evals_enabled");
-        final String[] evals_enabled=new String[evals.size()];
-        evals.toArray(evals_enabled);
+	fun saveData(TEXT: Int, KEY: String?) {
+		val prefs: SharedPreferences =
+			PreferenceManager.getDefaultSharedPreferences(this@MainActivity)
+		val editor: SharedPreferences.Editor = prefs.edit()
+		editor.putInt(KEY, TEXT)
+		editor.apply()
+	}
 
-        start_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            Intent myIntent = new Intent(MainActivity.this, CasesActivity.class);
-            Bundle string_array_bundle = new Bundle();
-            string_array_bundle.putStringArray("cases_enabled",cases_enabled);
-            string_array_bundle.putStringArray("evals_enabled",evals_enabled);
-            myIntent.putExtras(string_array_bundle);
-            startActivity(myIntent);
-            }
-        });
-
-        options_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            Intent myIntent = new Intent(MainActivity.this, OptionsActivity.class);
-            startActivity(myIntent);
-            }
-        });
-    }
-
-    public void saveArrayList(ArrayList<String> list, String key){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        SharedPreferences.Editor editor = prefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
-        editor.putString(key, json);
-        editor.apply();
-    }
-
-    public ArrayList<String> getArrayList(String key){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        Gson gson = new Gson();
-        String json = prefs.getString(key, null);
-        Type type = new TypeToken<ArrayList<String>>() {}.getType();
-        return gson.fromJson(json, type);
-    }
-
-    public void saveData(int TEXT,String KEY) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(KEY, TEXT);
-        editor.apply();
-    }
-
-    public int loadData(String KEY) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        int text = prefs.getInt(KEY, 0);
-        return text;
-    }
+	fun loadData(KEY: String?): Int {
+		val prefs: SharedPreferences =
+			PreferenceManager.getDefaultSharedPreferences(this@MainActivity)
+		return prefs.getInt(KEY, 0)
+	}*/
+	}
 }

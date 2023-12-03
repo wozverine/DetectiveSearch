@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.glitch.detectivesearch.ui.home.HomeFragment
+import com.glitch.detectivesearch.databinding.FragmentHomeBinding
+
 
 class HomeFragment : Fragment() {
 	private var _binding: FragmentHomeBinding? = null

@@ -63,7 +63,7 @@
             android:label="Options"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name="com.glitch.detectivesearch.MainActivity"
+        <activity android:name="com.glitch.detectivesearch.ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">
             <intent-filter>
