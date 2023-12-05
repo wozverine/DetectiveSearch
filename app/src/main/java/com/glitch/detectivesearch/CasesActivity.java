@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.glitch.detectivesearch.R;
 import com.glitch.detectivesearch.cases.CasesAdapter;
 import com.glitch.detectivesearch.cases.CasesInfo;
 import com.glitch.detectivesearch.evalquestions.E1Activity;
@@ -63,7 +62,7 @@ public class CasesActivity extends AppCompatActivity implements ListItemClickLis
         //CasesInfo[] list_string = {namecases("1"),namecases("2"),namecases("3"),namecases("4"),
         //      namecases("5"),namecases("6"),namecases("7")};
 
-        RecyclerView case_recyle = (RecyclerView) findViewById(R.id.recyc_cases);
+        RecyclerView case_recyle = (RecyclerView) findViewById(R.id.rv_cases);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         case_recyle.setLayoutManager(mLayoutManager);
         case_recyle.setHasFixedSize(true);
