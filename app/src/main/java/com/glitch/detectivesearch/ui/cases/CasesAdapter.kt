@@ -45,8 +45,7 @@ class CasesAdapter(
 				tvProductName.text = case.caseName
 
 				root.setOnClickListener {
-					//TODO
-					//onCaseClick(case.desc)
+					onCaseClick(case.id)
 				}
 			}
 		}
