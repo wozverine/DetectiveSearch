@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.glitch.detectivesearch.R
+import com.glitch.detectivesearch.data.model.Case
 import com.glitch.detectivesearch.data.model.CaseInfo
 import com.glitch.detectivesearch.databinding.FragmentCasesBinding
 
@@ -38,11 +39,11 @@ class CasesFragment : Fragment() {
 
 		val firstTime = sharedPref.getBoolean("firstTime", true)
 		if (firstTime){
-			val caseList: MutableList<CaseInfo> = List(caseCount) { CaseInfo() }.toMutableList()
+			val caseList: MutableList<Case> = mutableListOf()
 			for (x in 0..caseCount){
-				caseList.add(x, CaseInfo("Case $x", isCaseEnabled = false, isEvalEnabled = false))
+				caseList.add(x, Case(x, "Case $x", "false", "false"))
 			}
-			caseList[0].isCaseEnabled = true
+			caseList[0].isCaseEnabled = "true"
 			with (sharedPref.edit()) {
 				putBoolean("firstTime", false)
 				apply()
