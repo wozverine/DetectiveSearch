@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.glitch.detectivesearch.R
 import com.glitch.detectivesearch.data.model.Case
 import com.glitch.detectivesearch.data.model.CaseInfo
 import com.glitch.detectivesearch.databinding.FragmentCasesBinding
@@ -22,11 +21,11 @@ class CasesFragment : Fragment() {
 	private val caseCount = 10
 
 	private val casesAdapter = CasesAdapter(
-		onCaseClick =::onCaseClick
+		onCaseClick = ::onCaseClick
 	)
+
 	override fun onCreateView(
-		inflater: LayoutInflater, container: ViewGroup?,
-		savedInstanceState: Bundle?
+		inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
 	): View {
 		_binding = FragmentCasesBinding.inflate(inflater, container, false)
 		return binding.root
@@ -38,21 +37,38 @@ class CasesFragment : Fragment() {
 		sharedPref = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
 
 		val firstTime = sharedPref.getBoolean("firstTime", true)
-		if (firstTime){
+		if (firstTime) {
 			val caseList: MutableList<Case> = mutableListOf()
-			for (x in 0..caseCount){
+			val caseInfoList: MutableList<CaseInfo> = mutableListOf()
+
+			fun getKey(caseNumber: Int, questionNumber: Int): String {
+				return "eval_" + (caseNumber + 1) + "_q" + questionNumber + "_array"
+			}
+
+			for (x in 0..caseCount) {
 				caseList.add(x, Case(x, "Case $x", "false", "false"))
 			}
+
+			for (x in 0..caseCount) {
+				caseInfoList.add(
+					x, CaseInfo(
+						x,
+						getStringResource(requireContext(), "story_" + (x + 1)),
+						getArrayListResource(getKey(x, 1), sharedPref),
+						getArrayListResource(getKey(x, 2), sharedPref),
+						getArrayListResource(getKey(x, 3), sharedPref)
+					)
+				)
+			}
 			caseList[0].isCaseEnabled = "true"
-			with (sharedPref.edit()) {
+			with(sharedPref.edit()) {
 				putBoolean("firstTime", false)
 				apply()
 			}
 		}
 
-		with(binding){
+		with(binding) {
 			rvCases.adapter = casesAdapter
-
 		}
 	}
 
@@ -65,12 +81,19 @@ class CasesFragment : Fragment() {
 			getString(R.string.key), Context.MODE_PRIVATE)
 		//return prefs.getInt(KEY, 0)
 	}*/
-	
-	private fun getArrayList(key: String, sharedPref: SharedPreferences): List<String> {
+
+	private fun getArrayListResource(key: String, sharedPref: SharedPreferences): List<String> {
 		val json = sharedPref.getString(key, null) ?: return emptyList()
 		return listOf(json)
 	}
 
+	private fun getStringResource(context: Context, name: String): String {
+		return resources.getString(
+			context.resources.getIdentifier(
+				name, "string", context.packageName
+			)
+		)
+	}
 
 	override fun onDestroyView() {
 		super.onDestroyView()
