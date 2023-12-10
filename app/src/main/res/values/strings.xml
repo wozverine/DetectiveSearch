@@ -1,10 +1,8 @@
 <resources>
     <string name="app_name">Detective Search</string>
     <string name="countries">Countries</string>
-    <string name="start">Start</string>
-    <string name="options">Options</string>
-
-
+    <string name="start">START</string>
+    <string name="options">OPTIONS</string>
 
     <string-array name="countries_array">
         <item>Argentina</item>
@@ -382,4 +380,6 @@
         in the world.</string>
     <string name="USA_2">The country shares land borders with Canada and with Mexico. The border shared with Canada is the longest
         international border in the world. It is the third most populous country in the world after China and India.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

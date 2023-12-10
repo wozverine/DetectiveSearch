@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.glitch.detectivesearch.R;
+/*import com.glitch.detectivesearch.R;
 import com.google.gson.Gson;
-import com.llollox.androidtoggleswitch.widgets.ToggleSwitch;
+import com.llollox.androidtoggleswitch.widgets.ToggleSwitch;*/
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,20 +24,20 @@ public class OptionsActivity extends AppCompatActivity {
     RadioButton radioButton;
     RadioButton normal_rdbtn;
     RadioButton flag_rdbtn;
-    ToggleSwitch photo_swtch;
-    ToggleSwitch easy_swtch;
+  /*  ToggleSwitch photo_swtch;
+    ToggleSwitch easy_swtch;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.options_activity);
+        setContentView(R.layout.fragment_options);
         //Toolbar toolbar = findViewById(R.id.toolbar_detail);
         //setSupportActionBar(toolbar);
 
         final RadioGroup radioGroup=findViewById(R.id.rg_options);
         normal_rdbtn=findViewById(R.id.normalmode_rb);
         flag_rdbtn=findViewById(R.id.flagmode_rb);
-        photo_swtch =findViewById(R.id.photo_switch);
-        easy_swtch =findViewById(R.id.easy_switch);
+        /*photo_swtch =findViewById(R.id.photo_switch);
+        easy_swtch =findViewById(R.id.easy_switch);*/
         save_btn=findViewById(R.id.savechanges_btn);
         reset_btn=findViewById(R.id.reset_btn);
 
@@ -47,7 +47,7 @@ public class OptionsActivity extends AppCompatActivity {
         int photo=loadData("photo");
         System.out.println("mode: "+mode+" easy: "+easy+" photo "+photo);
 
-        View.OnClickListener first_radio_listener = new View.OnClickListener(){
+        /*View.OnClickListener first_radio_listener = new View.OnClickListener(){
             public void onClick(View v) {
                 photo_swtch.setEnabled(true);
                 easy_swtch.setEnabled(true);
@@ -77,9 +77,9 @@ public class OptionsActivity extends AppCompatActivity {
             }
         }if(mode==1){
             flag_rdbtn.toggle();
-        }
+        }*/
 
-        save_btn.setOnClickListener(new View.OnClickListener() {
+        /*save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -108,7 +108,7 @@ public class OptionsActivity extends AppCompatActivity {
                 Toast.makeText(OptionsActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                 OptionsActivity.this.finish();
             }
-        });
+        });*/
 
         reset_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,10 +126,10 @@ public class OptionsActivity extends AppCompatActivity {
 
                 ArrayList<String> list1 = new ArrayList<String>();
                 Collections.addAll(list1, arr);
-                saveArrayList(list1,"cases_enabled");
+                //saveArrayList(list1,"cases_enabled");
                 ArrayList<String> list2 = new ArrayList<String>();
                 Collections.addAll(list2, arr2);
-                saveArrayList(list2,"evals_enabled");
+                //saveArrayList(list2,"evals_enabled");
 
                 saveData(0,"mode");
                 saveData(0,"easy");
@@ -141,14 +141,14 @@ public class OptionsActivity extends AppCompatActivity {
 
     }
 
-    public void saveArrayList(ArrayList<String> list, String key){
+    /*public void saveArrayList(ArrayList<String> list, String key){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(OptionsActivity.this);
         SharedPreferences.Editor editor = prefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(list);
         editor.putString(key, json);
         editor.apply();
-    }
+    }*/
     public void saveData(int TEXT,String KEY) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(OptionsActivity.this);
         SharedPreferences.Editor editor = prefs.edit();

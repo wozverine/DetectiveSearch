@@ -9,5 +9,22 @@
         android:id="@+id/homeFragment"
         android:name="com.glitch.detectivesearch.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_casesFragment"
+            app:destination="@id/casesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_optionsFragment"
+            app:destination="@id/optionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/casesFragment"
+        android:name="com.glitch.detectivesearch.ui.cases.CasesFragment"
+        android:label="fragment_cases"
+        tools:layout="@layout/fragment_cases" />
+    <fragment
+        android:id="@+id/optionsFragment"
+        android:name="com.glitch.detectivesearch.ui.options.OptionsFragment"
+        android:label="fragment_options"
+        tools:layout="@layout/fragment_options" />
 </navigation>

@@ -36,7 +36,7 @@ class CasesFragment : Fragment() {
 
 		sharedPref = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
 
-		val firstTime = sharedPref.getBoolean("firstTime", true)
+		/*val firstTime = sharedPref.getBoolean("firstTime", true)
 		if (firstTime) {
 			val caseList: MutableList<Case> = mutableListOf()
 			val caseInfoList: MutableList<CaseInfo> = mutableListOf()
@@ -65,7 +65,7 @@ class CasesFragment : Fragment() {
 				putBoolean("firstTime", false)
 				apply()
 			}
-		}
+		}*/
 
 		with(binding) {
 			rvCases.adapter = casesAdapter

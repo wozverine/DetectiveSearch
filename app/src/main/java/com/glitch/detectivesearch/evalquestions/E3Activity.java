@@ -14,9 +14,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.glitch.detectivesearch.CasesActivity;
 import com.glitch.detectivesearch.R;
-import com.google.gson.Gson;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,7 +77,7 @@ public class E3Activity extends AppCompatActivity {
             }
             ArrayList<String> list1 = new ArrayList<String>();
             Collections.addAll(list1, arr);
-            saveArrayList(list1,"cases_enabled");
+            //saveArrayList(list1,"cases_enabled");
 
             String[] arr_eval=new String[CASE_COUNT];
             for(int x=0;x<arr_eval.length;x++){
@@ -90,25 +89,25 @@ public class E3Activity extends AppCompatActivity {
 
             ArrayList<String> liste = new ArrayList<String>();
             Collections.addAll(liste, arr_eval);
-            saveArrayList(liste,"evals_enabled");
+            //saveArrayList(liste,"evals_enabled");
 
             Bundle int_bundle = new Bundle();
             int_bundle.putInt("case_number",story_number);
-            Intent intent = new Intent(E3Activity.this, CasesActivity.class);
+            /*Intent intent = new Intent(E3Activity.this, CasesActivity.class);
             intent.putExtras(int_bundle);
             startActivity(intent);
-            E3Activity.this.finish();
+            E3Activity.this.finish();*/
             }
         });
     }
-    public void saveArrayList(ArrayList<String> list, String key){
+    /*public void saveArrayList(ArrayList<String> list, String key){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(E3Activity.this);
         SharedPreferences.Editor editor = prefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(list);
         editor.putString(key, json);
         editor.apply();
-    }
+    }*/
 
     public int loadData(String KEY) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(E3Activity.this);

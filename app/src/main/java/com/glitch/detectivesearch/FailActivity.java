@@ -23,8 +23,8 @@ public class FailActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 FailActivity.this.finish();
-                Intent myIntent = new Intent(FailActivity.this, CasesActivity.class);
-                startActivity(myIntent);
+                /*Intent myIntent = new Intent(FailActivity.this, CasesActivity.class);
+                startActivity(myIntent);*/
             }
         });
     }

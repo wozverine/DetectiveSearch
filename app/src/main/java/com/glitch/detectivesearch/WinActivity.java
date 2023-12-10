@@ -9,8 +9,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,9 +23,9 @@ public class WinActivity extends AppCompatActivity{
         //Toolbar toolbar = findViewById(R.id.toolbar_detail);
         //setSupportActionBar(toolbar);
 
-        final int CASE_COUNT=loadData("case_count");
-        b=findViewById(R.id.win_btn);
-        b.setOnClickListener(new View.OnClickListener() {
+        //final int CASE_COUNT=loadData("case_count");
+        b = findViewById(R.id.win_btn);
+       /* b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int story_number = Objects.requireNonNull(getIntent().getExtras()).getInt("case_number");
@@ -63,19 +61,13 @@ public class WinActivity extends AppCompatActivity{
                 startActivity(myIntent);
             }
         });
-    }
+    }*/
 
-    public void saveArrayList(ArrayList<String> list, String key){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(WinActivity.this);
-        SharedPreferences.Editor editor = prefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
-        editor.putString(key, json);
-        editor.apply();
-    }
-    public int loadData(String KEY) {
+
+    /*public int loadData(String KEY) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(WinActivity.this);
         int text = prefs.getInt(KEY, 0);
         return text;
+    }*/
     }
 }

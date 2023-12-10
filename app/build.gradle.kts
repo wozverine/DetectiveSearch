@@ -55,4 +55,6 @@ dependencies {
     //Glide - Lottie
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.airbnb.android:lottie:6.1.0")
+    //toggleswitch
+    implementation("com.llollox:androidtoggleswitch:2.0.1")
 }
