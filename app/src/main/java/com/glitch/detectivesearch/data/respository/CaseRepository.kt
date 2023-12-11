@@ -1,28 +1,34 @@
 package com.glitch.detectivesearch.data.respository
 
+import com.glitch.detectivesearch.data.common.Resource
 import com.glitch.detectivesearch.data.model.mappers.mapCaseEntityToCaseUI
 import com.glitch.detectivesearch.data.model.mappers.mapToCaseEntity
 import com.glitch.detectivesearch.data.model.response.CaseUI
 import com.glitch.detectivesearch.data.source.local.CaseDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class CaseRepository(
 	private val caseDao: CaseDao
 ) {
-	fun addToCases(caseUI: CaseUI) {
+	suspend fun addToCases(caseUI: CaseUI) = withContext(Dispatchers.IO) {
 		caseDao.addProduct(caseUI.mapToCaseEntity())
 	}
 
-	fun deleteFromCases(caseUI: CaseUI) {
-		caseDao.deleteProduct(caseUI.mapToCaseEntity())
+	suspend fun deleteFromCases(caseUI: CaseUI) = withContext(Dispatchers.IO) {
+		caseDao.deleteCase(caseUI.mapToCaseEntity())
 	}
 
-	fun getCases(): List<CaseUI> {
-		val cases = caseDao.getCases()
-		return cases.mapCaseEntityToCaseUI()
+	suspend fun getCases(): Resource<List<CaseUI>> = withContext(Dispatchers.IO) {
+		try {
+			val cases = caseDao.getCases()
+			Resource.Success(cases.mapCaseEntityToCaseUI())
+		} catch (e: Exception) {
+			Resource.Error(e.message.orEmpty())
+		}
 	}
 
-	fun clearFavorites() {
-		caseDao.clearFavorites()
+	suspend fun clearCases() = withContext(Dispatchers.IO) {
+		caseDao.clearCases()
 	}
-
 }

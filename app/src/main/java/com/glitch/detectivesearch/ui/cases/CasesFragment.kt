@@ -8,18 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.glitch.detectivesearch.data.common.Resource
+import com.glitch.detectivesearch.data.model.mappers.mapToCase
 import com.glitch.detectivesearch.data.model.mappers.mapToCaseUI
 import com.glitch.detectivesearch.data.model.response.Case
 import com.glitch.detectivesearch.data.model.response.CaseInfo
 import com.glitch.detectivesearch.data.respository.CaseRepository
-import com.glitch.detectivesearch.data.source.Database
+import com.glitch.detectivesearch.data.source.local.CaseRoomDB
 import com.glitch.detectivesearch.databinding.FragmentCasesBinding
+import kotlinx.coroutines.launch
 
-class CasesFragment(private val caseRepository: CaseRepository) : Fragment() {
+class CasesFragment() : Fragment() {
 	private var _binding: FragmentCasesBinding? = null
 	private val binding get() = _binding!!
 
 	private lateinit var sharedPref: SharedPreferences
+
+	private lateinit var caseRepository: CaseRepository
 
 	private val caseCount = 10
 
@@ -39,6 +45,9 @@ class CasesFragment(private val caseRepository: CaseRepository) : Fragment() {
 
 		sharedPref = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
 
+		val caseDao = CaseRoomDB.getInstance(requireContext()).caseDao()
+		caseRepository = CaseRepository(caseDao)
+
 		val firstTime = sharedPref.getBoolean("firstTime", true)
 		if (firstTime) {
 			val caseList: MutableList<Case> = mutableListOf()
@@ -50,11 +59,16 @@ class CasesFragment(private val caseRepository: CaseRepository) : Fragment() {
 
 			for (x in 0..caseCount) {
 				caseList.add(x, Case(x, "Case $x", "false", "false"))
-				Database.addCases("Case $x", "false", "false")
+				//Database.addCases("Case $x", "false", "false")
+				caseList[0].isCaseEnabled = "true"
+				lifecycleScope.launch {
+					caseRepository.addToCases(caseList[x].mapToCaseUI())
+					// Perform UI operations with the retrieved data
+				}
 			}
 
 			for (x in 0..<caseCount) {
-				val key = "story_"+(x+1)
+				val key = "story_" + (x + 1)
 				caseInfoList.add(
 					x, CaseInfo(
 						x,
@@ -65,24 +79,36 @@ class CasesFragment(private val caseRepository: CaseRepository) : Fragment() {
 					)
 				)
 			}
-
-			caseList[0].isCaseEnabled = "true"
 			with(sharedPref.edit()) {
 				putBoolean("firstTime", false)
 				apply()
 			}
-			casesAdapter.updateList(caseList)
-			caseRepository.addToCases(caseList[0].mapToCaseUI())
+
+		}
+
+		lifecycleScope.launch {
+			when (val resource = caseRepository.getCases()) {
+				is Resource.Success -> {
+					val casesUI = resource.data
+					val cases = casesUI.map { it.mapToCase() }
+					casesAdapter.updateList(cases)
+				}
+
+				is Resource.Error -> {
+					// Handle the error state, if needed
+				}
+
+				else -> {}
+			}
 		}
 
 		with(binding) {
-
 			rvCases.adapter = casesAdapter
 		}
 	}
 
 	private fun onCaseClick(id: Int) {
-		Toast.makeText(requireContext(), id, Toast.LENGTH_SHORT).show()
+		Toast.makeText(requireContext(), id.toString(), Toast.LENGTH_SHORT).show()
 	}
 
 	/*fun loadData(key: String?): Int {

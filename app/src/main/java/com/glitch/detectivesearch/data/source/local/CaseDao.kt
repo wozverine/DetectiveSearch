@@ -14,14 +14,14 @@ interface CaseDao {
 	fun getCases(): List<CaseEntity>
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
-	fun addProduct(productEntity: CaseEntity)
+	fun addProduct(caseEntity: CaseEntity)
 
 	@Delete
-	fun deleteProduct(productEntity: CaseEntity)
+	fun deleteCase(caseEntity: CaseEntity)
 
 	@Query("SELECT caseId FROM cases")
-	fun getProductIds(): List<Int>
+	fun getCaseIds(): List<Int>
 
 	@Query("DELETE FROM cases")
-	fun clearFavorites()
+	fun clearCases()
 }

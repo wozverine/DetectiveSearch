@@ -6,7 +6,7 @@ import com.glitch.detectivesearch.data.model.response.CaseUI
 
 
 fun Case.mapToCaseUI() = CaseUI(
-	id = id ?: 1,
+	id = id,
 	caseName = caseName.orEmpty(),
 	isCaseEnabled = isCaseEnabled.orEmpty(),
 	isEvalEnabled = isEvalEnabled.orEmpty()
@@ -14,7 +14,7 @@ fun Case.mapToCaseUI() = CaseUI(
 
 fun List<Case>.mapCaseToCaseUI() = map {
 	CaseUI(
-		id = it.id ?: 1,
+		id = it.id,
 		caseName = it.caseName.orEmpty(),
 		isCaseEnabled = it.isCaseEnabled.orEmpty(),
 		isEvalEnabled = it.isEvalEnabled.orEmpty()
@@ -36,3 +36,9 @@ fun List<CaseEntity>.mapCaseEntityToCaseUI() = map {
 		isEvalEnabled = it.isEvalEnabled.orEmpty()
 	)
 }
+fun CaseUI.mapToCase() = Case(
+	id = id,
+	caseName = caseName,
+	isCaseEnabled = isCaseEnabled,
+	isEvalEnabled = isEvalEnabled
+)
