@@ -1,4 +1,4 @@
-package com.glitch.detectivesearch.data.model
+package com.glitch.detectivesearch.data.model.response
 
 data class CaseInfo(
 	val id: Int,
@@ -6,5 +6,4 @@ data class CaseInfo(
 	val question1: List<String>,
 	val question2: List<String>,
 	val question3: List<String>
-
 )

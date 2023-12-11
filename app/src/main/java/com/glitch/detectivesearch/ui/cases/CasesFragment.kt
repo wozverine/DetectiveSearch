@@ -8,11 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.glitch.detectivesearch.data.model.Case
-import com.glitch.detectivesearch.data.model.CaseInfo
+import com.glitch.detectivesearch.data.model.mappers.mapToCaseUI
+import com.glitch.detectivesearch.data.model.response.Case
+import com.glitch.detectivesearch.data.model.response.CaseInfo
+import com.glitch.detectivesearch.data.respository.CaseRepository
+import com.glitch.detectivesearch.data.source.Database
 import com.glitch.detectivesearch.databinding.FragmentCasesBinding
 
-class CasesFragment : Fragment() {
+class CasesFragment(private val caseRepository: CaseRepository) : Fragment() {
 	private var _binding: FragmentCasesBinding? = null
 	private val binding get() = _binding!!
 
@@ -36,7 +39,7 @@ class CasesFragment : Fragment() {
 
 		sharedPref = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
 
-		/*val firstTime = sharedPref.getBoolean("firstTime", true)
+		val firstTime = sharedPref.getBoolean("firstTime", true)
 		if (firstTime) {
 			val caseList: MutableList<Case> = mutableListOf()
 			val caseInfoList: MutableList<CaseInfo> = mutableListOf()
@@ -47,27 +50,33 @@ class CasesFragment : Fragment() {
 
 			for (x in 0..caseCount) {
 				caseList.add(x, Case(x, "Case $x", "false", "false"))
+				Database.addCases("Case $x", "false", "false")
 			}
 
-			for (x in 0..caseCount) {
+			for (x in 0..<caseCount) {
+				val key = "story_"+(x+1)
 				caseInfoList.add(
 					x, CaseInfo(
 						x,
-						getStringResource(requireContext(), "story_" + (x + 1)),
+						getStringResource(requireContext(), key),
 						getArrayListResource(getKey(x, 1), sharedPref),
 						getArrayListResource(getKey(x, 2), sharedPref),
 						getArrayListResource(getKey(x, 3), sharedPref)
 					)
 				)
 			}
+
 			caseList[0].isCaseEnabled = "true"
 			with(sharedPref.edit()) {
 				putBoolean("firstTime", false)
 				apply()
 			}
-		}*/
+			casesAdapter.updateList(caseList)
+			caseRepository.addToCases(caseList[0].mapToCaseUI())
+		}
 
 		with(binding) {
+
 			rvCases.adapter = casesAdapter
 		}
 	}

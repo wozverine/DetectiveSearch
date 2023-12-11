@@ -1,4 +1,4 @@
-package com.glitch.detectivesearch.data.model
+package com.glitch.detectivesearch.data.model.response
 
 data class Case(
 	val id: Int,

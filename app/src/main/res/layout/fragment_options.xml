@@ -1,85 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_2"
-    android:orientation="horizontal">
-    <LinearLayout
-        android:layout_width="match_parent"
+    tools:context=".ui.options.OptionsFragment">
+
+    <com.github.angads25.toggle.widget.LabeledSwitch
+        android:id="@+id/mode_switch"
+        android:layout_width="160sp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical">
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="#73FFFFFF"
-            android:id="@+id/rg_options">
+        android:textSize="20sp"
+        app:colorBorder="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@id/photo_switch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:textOff="Flag Mode"
+        app:textOn="Normal Mode" />
 
-            <RadioButton
-                android:id="@+id/flagmode_rb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="@string/flag_mode"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+    <com.github.angads25.toggle.widget.LabeledSwitch
+        android:id="@+id/photo_switch"
+        android:layout_width="160sp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10sp"
+        android:textSize="20sp"
+        app:colorBorder="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@id/easy_switch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mode_switch"
+        app:textOff="Photo OFF"
+        app:textOn="Photo ON" />
 
-            <RadioButton
-                android:id="@+id/normalmode_rb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="@string/normal_mode"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </RadioGroup>
+    <com.github.angads25.toggle.widget.LabeledSwitch
+        android:id="@+id/easy_switch"
+        android:layout_width="160sp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:colorBorder="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@id/btn_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photo_switch"
+        app:textOff="HARD MODE"
+        app:textOn="EASY MODE" />
 
-        <ToggleButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </ToggleButton>
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20sp"
+        android:text="@string/save_btn"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/btn_reset"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/easy_switch" />
 
-        <!--<com.llollox.androidtoggleswitch.widgets.ToggleSwitch
-            android:id="@+id/photo_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            app:textToggleLeft="Photo"
-            app:textToggleRight="No photo" />-->
-        <!--<com.llollox.androidtoggleswitch.widgets.ToggleSwitch
-            android:id="@+id/easy_switch"
-            android:layout_width="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:textToggleLeft="Easy"
-            app:textToggleRight="Hard" >
-        </com.llollox.androidtoggleswitch.widgets.ToggleSwitch>-->
+    <Button
+        android:id="@+id/btn_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/reset_btn"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_save" />
 
-        <Button
-            android:id="@+id/savechanges_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/save_btn"
-            android:textStyle="bold">
-        </Button>
-
-        <Button
-            android:id="@+id/reset_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp"
-            android:text="@string/reset_btn"
-            android:textStyle="bold">
-        </Button>
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

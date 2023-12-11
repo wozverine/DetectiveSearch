@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs")
     id("kotlin-android")
+    id("kotlin-kapt")
     id("kotlin-parcelize")
 }
 
@@ -56,5 +57,9 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.airbnb.android:lottie:6.1.0")
     //toggleswitch
-    implementation("com.llollox:androidtoggleswitch:2.0.1")
+    implementation("com.github.angads25:toggle:1.1.0")
+    //Room
+    implementation("androidx.room:room-runtime:2.6.0")
+    kapt("androidx.room:room-compiler:2.6.0")
+    implementation("androidx.room:room-ktx:2.6.0")
 }

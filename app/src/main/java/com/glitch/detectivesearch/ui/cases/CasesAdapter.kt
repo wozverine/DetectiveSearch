@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.glitch.detectivesearch.R
-import com.glitch.detectivesearch.data.model.Case
+import com.glitch.detectivesearch.data.model.response.Case
 import com.glitch.detectivesearch.databinding.ItemCaseBinding
 
 class CasesAdapter(
@@ -39,7 +39,7 @@ class CasesAdapter(
 				if (case.isCaseEnabled == "true") {
 					ivFile.setImageResource(R.drawable.file)
 				}
-				if (case.isCaseEnabled == "true") {
+				if (case.isCaseEnabled == "done") {
 					ivFile.setImageResource(R.drawable.file_done)
 				}
 				tvProductName.text = case.caseName
@@ -49,5 +49,10 @@ class CasesAdapter(
 				}
 			}
 		}
+	}
+	fun updateList(list: List<Case>) {
+		caseList.clear()
+		caseList.addAll(list)
+		notifyItemRangeChanged(0, list.size)
 	}
 }

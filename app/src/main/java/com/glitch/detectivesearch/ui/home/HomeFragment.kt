@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
 
 		with(binding){
 			btnOptions.setOnClickListener {
-
+				findNavController().navigate(R.id.action_homeFragment_to_optionsFragment)
 			}
 			btnStart.setOnClickListener {
 				findNavController().navigate(R.id.action_homeFragment_to_casesFragment)

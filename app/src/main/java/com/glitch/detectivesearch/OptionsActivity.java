@@ -33,11 +33,11 @@ public class OptionsActivity extends AppCompatActivity {
         //Toolbar toolbar = findViewById(R.id.toolbar_detail);
         //setSupportActionBar(toolbar);
 
-        final RadioGroup radioGroup=findViewById(R.id.rg_options);
+        /*final RadioGroup radioGroup=findViewById(R.id.rg_options);
         normal_rdbtn=findViewById(R.id.normalmode_rb);
         flag_rdbtn=findViewById(R.id.flagmode_rb);
-        /*photo_swtch =findViewById(R.id.photo_switch);
-        easy_swtch =findViewById(R.id.easy_switch);*/
+        *//*photo_swtch =findViewById(R.id.photo_switch);
+        easy_swtch =findViewById(R.id.easy_switch);*//*
         save_btn=findViewById(R.id.savechanges_btn);
         reset_btn=findViewById(R.id.reset_btn);
 
@@ -45,7 +45,7 @@ public class OptionsActivity extends AppCompatActivity {
         int mode=loadData("mode");
         int easy=loadData("easy");
         int photo=loadData("photo");
-        System.out.println("mode: "+mode+" easy: "+easy+" photo "+photo);
+        System.out.println("mode: "+mode+" easy: "+easy+" photo "+photo);*/
 
         /*View.OnClickListener first_radio_listener = new View.OnClickListener(){
             public void onClick(View v) {
@@ -110,7 +110,7 @@ public class OptionsActivity extends AppCompatActivity {
             }
         });*/
 
-        reset_btn.setOnClickListener(new View.OnClickListener() {
+        /*reset_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String arr[]=new String[CASE_COUNT];
@@ -137,7 +137,7 @@ public class OptionsActivity extends AppCompatActivity {
                 Toast.makeText(OptionsActivity.this, "Reset", Toast.LENGTH_SHORT).show();
                 OptionsActivity.this.finish();
             }
-        });
+        });*/
 
     }
 

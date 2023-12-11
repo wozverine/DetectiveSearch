@@ -1,6 +1,6 @@
 package com.glitch.detectivesearch.data.source
 
-import com.glitch.detectivesearch.data.model.Case
+import com.glitch.detectivesearch.data.model.response.Case
 
 object Database {
 	private val caseList = mutableListOf<Case>()

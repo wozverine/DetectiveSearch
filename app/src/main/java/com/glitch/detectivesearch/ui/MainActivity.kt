@@ -7,6 +7,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.glitch.detectivesearch.R
 import com.glitch.detectivesearch.databinding.ActivityMainBinding
+
 /*import com.google.gson.Gson
 import java.lang.reflect.Type
 import java.util.Collections*/
@@ -14,19 +15,16 @@ import java.util.Collections*/
 class MainActivity : AppCompatActivity() {
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
-	/*var start_btn: Button? = null
-	var options_btn: Button? = null*/
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
 		binding = ActivityMainBinding.inflate(layoutInflater)
-		setContentView(R.layout.activity_main)
-
+		setContentView(binding.root)
 
 		setSupportActionBar(binding.toolbar)
 
 		val navHostFragment =
-			supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
+			supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 		val navController = navHostFragment.navController
 
 		appBarConfiguration = AppBarConfiguration(navController.graph)
