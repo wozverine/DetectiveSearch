@@ -1,5 +1,7 @@
 package com.glitch.detectivesearch.ui.home
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +15,10 @@ import com.glitch.detectivesearch.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 	private var _binding: FragmentHomeBinding? = null
 	private val binding get() = _binding!!
+
+	private lateinit var sharedPref: SharedPreferences
+
+	private val caseCount = 10
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
 	): View {
@@ -22,6 +28,13 @@ class HomeFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
+
+		sharedPref = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
+		val firstTime = sharedPref.getBoolean("firstLaunch", true)
+
+		if (firstTime) {
+			sharedPreferenceFirst()
+		}
 
 		with(binding){
 			btnOptions.setOnClickListener {
@@ -36,5 +49,16 @@ class HomeFragment : Fragment() {
 	override fun onDestroyView() {
 		super.onDestroyView()
 		_binding = null
+	}
+
+	private fun sharedPreferenceFirst(){
+		with(sharedPref.edit()) {
+			putBoolean("easyMode", true)
+			putBoolean("photoMode", true)
+			putBoolean("flagMode", true)
+			putInt("caseCount", caseCount)
+			putBoolean("firstLaunch", false)
+			apply()
+		}
 	}
 }

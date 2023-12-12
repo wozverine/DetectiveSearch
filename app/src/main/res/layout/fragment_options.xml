@@ -8,12 +8,12 @@
     tools:context=".ui.options.OptionsFragment">
 
     <com.github.angads25.toggle.widget.LabeledSwitch
-        android:id="@+id/mode_switch"
+        android:id="@+id/flagSwitch"
         android:layout_width="160sp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         app:colorBorder="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@id/photo_switch"
+        app:layout_constraintBottom_toTopOf="@id/photoSwitch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,43 +22,33 @@
         app:textOn="Normal Mode" />
 
     <com.github.angads25.toggle.widget.LabeledSwitch
-        android:id="@+id/photo_switch"
+        android:id="@+id/photoSwitch"
         android:layout_width="160sp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10sp"
         android:textSize="20sp"
         app:colorBorder="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@id/easy_switch"
+        app:layout_constraintBottom_toTopOf="@id/easySwitch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mode_switch"
+        app:layout_constraintTop_toBottomOf="@+id/flagSwitch"
         app:textOff="Photo OFF"
         app:textOn="Photo ON" />
 
     <com.github.angads25.toggle.widget.LabeledSwitch
-        android:id="@+id/easy_switch"
+        android:id="@+id/easySwitch"
         android:layout_width="160sp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         app:colorBorder="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@id/btn_save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photo_switch"
-        app:textOff="HARD MODE"
-        app:textOn="EASY MODE" />
-
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="20sp"
-        android:text="@string/save_btn"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/btn_reset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/easy_switch" />
+        app:layout_constraintTop_toBottomOf="@+id/photoSwitch"
+        app:textOff="HARD MODE"
+        app:textOn="EASY MODE" />
+
+
 
     <Button
         android:id="@+id/btn_reset"
@@ -70,6 +60,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_save" />
+        app:layout_constraintTop_toBottomOf="@+id/easySwitch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

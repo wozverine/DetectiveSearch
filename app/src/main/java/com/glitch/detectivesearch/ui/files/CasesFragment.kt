@@ -1,4 +1,4 @@
-package com.glitch.detectivesearch.ui.cases
+package com.glitch.detectivesearch.ui.files
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -13,7 +13,6 @@ import com.glitch.detectivesearch.data.common.Resource
 import com.glitch.detectivesearch.data.model.mappers.mapToCase
 import com.glitch.detectivesearch.data.model.mappers.mapToCaseUI
 import com.glitch.detectivesearch.data.model.response.Case
-import com.glitch.detectivesearch.data.model.response.CaseInfo
 import com.glitch.detectivesearch.data.respository.CaseRepository
 import com.glitch.detectivesearch.data.source.local.CaseRoomDB
 import com.glitch.detectivesearch.databinding.FragmentCasesBinding
@@ -26,8 +25,6 @@ class CasesFragment() : Fragment() {
 	private lateinit var sharedPref: SharedPreferences
 
 	private lateinit var caseRepository: CaseRepository
-
-	private val caseCount = 10
 
 	private val casesAdapter = CasesAdapter(
 		onCaseClick = ::onCaseClick
@@ -48,10 +45,12 @@ class CasesFragment() : Fragment() {
 		val caseDao = CaseRoomDB.getInstance(requireContext()).caseDao()
 		caseRepository = CaseRepository(caseDao)
 
-		val firstTime = sharedPref.getBoolean("firstTime", true)
+		val firstTime = sharedPref.getBoolean("firstPlay", true)
+		val caseCount = sharedPref.getInt("caseCount", 0)
+
 		if (firstTime) {
 			val caseList: MutableList<Case> = mutableListOf()
-			val caseInfoList: MutableList<CaseInfo> = mutableListOf()
+			//val caseInfoList: MutableList<CaseInfo> = mutableListOf()
 
 			fun getKey(caseNumber: Int, questionNumber: Int): String {
 				return "eval_" + (caseNumber + 1) + "_q" + questionNumber + "_array"
@@ -59,15 +58,13 @@ class CasesFragment() : Fragment() {
 
 			for (x in 0..caseCount) {
 				caseList.add(x, Case(x, "Case $x", "false", "false"))
-				//Database.addCases("Case $x", "false", "false")
 				caseList[0].isCaseEnabled = "true"
 				lifecycleScope.launch {
 					caseRepository.addToCases(caseList[x].mapToCaseUI())
-					// Perform UI operations with the retrieved data
 				}
 			}
 
-			for (x in 0..<caseCount) {
+			/*for (x in 0..<caseCount) {
 				val key = "story_" + (x + 1)
 				caseInfoList.add(
 					x, CaseInfo(
@@ -78,12 +75,8 @@ class CasesFragment() : Fragment() {
 						getArrayListResource(getKey(x, 3), sharedPref)
 					)
 				)
-			}
-			with(sharedPref.edit()) {
-				putBoolean("firstTime", false)
-				apply()
-			}
-
+			}*/
+			sharedPreferenceFirst()
 		}
 
 		lifecycleScope.launch {
@@ -117,11 +110,6 @@ class CasesFragment() : Fragment() {
 		//return prefs.getInt(KEY, 0)
 	}*/
 
-	private fun getArrayListResource(key: String, sharedPref: SharedPreferences): List<String> {
-		val json = sharedPref.getString(key, null) ?: return emptyList()
-		return listOf(json)
-	}
-
 	private fun getStringResource(context: Context, name: String): String {
 		return resources.getString(
 			context.resources.getIdentifier(
@@ -130,8 +118,21 @@ class CasesFragment() : Fragment() {
 		)
 	}
 
+	private fun getStringArrayResource(context: Context, name: String): Array<String> {
+		val resourceId = context.resources.getIdentifier(name, "array", context.packageName)
+		return context.resources.getStringArray(resourceId)
+	}
+
+
 	override fun onDestroyView() {
 		super.onDestroyView()
 		_binding = null
+	}
+
+	private fun sharedPreferenceFirst(){
+		with(sharedPref.edit()) {
+			putBoolean("firstPlay", false)
+			apply()
+		}
 	}
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.cases.CasesFragment"
+    tools:context=".ui.files.CasesFragment"
     android:background="@color/black">
 
     <androidx.recyclerview.widget.RecyclerView

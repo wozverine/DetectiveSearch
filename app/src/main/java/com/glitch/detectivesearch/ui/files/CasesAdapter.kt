@@ -1,4 +1,4 @@
-package com.glitch.detectivesearch.ui.cases
+package com.glitch.detectivesearch.ui.files
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
