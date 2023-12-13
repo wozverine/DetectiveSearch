@@ -19,9 +19,9 @@
     </fragment>
     <fragment
         android:id="@+id/casesFragment"
-        android:name="com.glitch.detectivesearch.ui.files.CasesFragment"
+        android:name="com.glitch.detectivesearch.ui.files.FilesFragment"
         android:label="fragment_cases"
-        tools:layout="@layout/fragment_cases" />
+        tools:layout="@layout/fragment_files" />
     <fragment
         android:id="@+id/optionsFragment"
         android:name="com.glitch.detectivesearch.ui.options.OptionsFragment"

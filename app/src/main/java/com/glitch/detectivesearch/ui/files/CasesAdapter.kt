@@ -15,12 +15,12 @@ class CasesAdapter(
 
 	override fun onCreateViewHolder(
 		parent: ViewGroup, viewType: Int
-	): CasesAdapter.CasesViewHolder {
+	): CasesViewHolder {
 		val binding = ItemCaseBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 		return CasesViewHolder(binding, onCaseClick)
 	}
 
-	override fun onBindViewHolder(holder: CasesAdapter.CasesViewHolder, position: Int) {
+	override fun onBindViewHolder(holder: CasesViewHolder, position: Int) {
 		holder.bind(caseList[position])
 	}
 
@@ -42,7 +42,7 @@ class CasesAdapter(
 				if (case.isCaseEnabled == "done") {
 					ivFile.setImageResource(R.drawable.file_done)
 				}
-				tvProductName.text = case.caseName
+				tvCaseName.text = case.caseName
 
 				root.setOnClickListener {
 					onCaseClick(case.id)

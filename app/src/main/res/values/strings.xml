@@ -3,6 +3,8 @@
     <string name="countries">Countries</string>
     <string name="start">START</string>
     <string name="options">OPTIONS</string>
+    <string name="cases">Case</string>
+    <string name="eval">Evaluation</string>
 
     <string-array name="countries_array">
         <item>Argentina</item>
@@ -38,7 +40,7 @@
     Be careful. Time travel to same time might have unwanted effects on timeline.</string>
     <string name="normal_mode">Normal Mode</string>
     <string name="flag_mode">Flag Mode</string>
-    <string name="reset_btn">Reset Progress</string>
+    <string name="reset">Reset Progress</string>
     <string name="save_btn">Save Changes</string>
     <string name="continue_btn">Continue</string>
     <string name="back_in_time_btn">Use Blink</string>

@@ -12,7 +12,7 @@ class CaseRepository(
 	private val caseDao: CaseDao
 ) {
 	suspend fun addToCases(caseUI: CaseUI) = withContext(Dispatchers.IO) {
-		caseDao.addProduct(caseUI.mapToCaseEntity())
+		caseDao.addCase(caseUI.mapToCaseEntity())
 	}
 
 	suspend fun deleteFromCases(caseUI: CaseUI) = withContext(Dispatchers.IO) {

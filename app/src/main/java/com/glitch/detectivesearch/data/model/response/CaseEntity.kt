@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "cases")
 data class CaseEntity(
-	@PrimaryKey @ColumnInfo(name = "caseId") val productId: Int?,
+	@PrimaryKey @ColumnInfo(name = "caseId") val caseId: Int?,
 
 	@ColumnInfo(name = "caseName") val caseName: String?,
 

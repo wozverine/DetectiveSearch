@@ -14,7 +14,7 @@ interface CaseDao {
 	fun getCases(): List<CaseEntity>
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
-	fun addProduct(caseEntity: CaseEntity)
+	fun addCase(caseEntity: CaseEntity)
 
 	@Delete
 	fun deleteCase(caseEntity: CaseEntity)

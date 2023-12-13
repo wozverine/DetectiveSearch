@@ -12,28 +12,38 @@ import androidx.lifecycle.lifecycleScope
 import com.glitch.detectivesearch.data.common.Resource
 import com.glitch.detectivesearch.data.model.mappers.mapToCase
 import com.glitch.detectivesearch.data.model.mappers.mapToCaseUI
+import com.glitch.detectivesearch.data.model.mappers.mapToEval
+import com.glitch.detectivesearch.data.model.mappers.mapToEvalUI
 import com.glitch.detectivesearch.data.model.response.Case
+import com.glitch.detectivesearch.data.model.response.Eval
 import com.glitch.detectivesearch.data.respository.CaseRepository
+import com.glitch.detectivesearch.data.respository.EvalRepository
 import com.glitch.detectivesearch.data.source.local.CaseRoomDB
-import com.glitch.detectivesearch.databinding.FragmentCasesBinding
+import com.glitch.detectivesearch.data.source.local.EvalRoomDB
+import com.glitch.detectivesearch.databinding.FragmentFilesBinding
 import kotlinx.coroutines.launch
 
-class CasesFragment() : Fragment() {
-	private var _binding: FragmentCasesBinding? = null
+class FilesFragment() : Fragment() {
+	private var _binding: FragmentFilesBinding? = null
 	private val binding get() = _binding!!
 
 	private lateinit var sharedPref: SharedPreferences
 
 	private lateinit var caseRepository: CaseRepository
+	private lateinit var evalRepository: EvalRepository
 
 	private val casesAdapter = CasesAdapter(
 		onCaseClick = ::onCaseClick
 	)
 
+	private val evalAdapter = EvalAdapter(
+		onEvalClick = ::onEvalClick
+	)
+
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
 	): View {
-		_binding = FragmentCasesBinding.inflate(inflater, container, false)
+		_binding = FragmentFilesBinding.inflate(inflater, container, false)
 		return binding.root
 	}
 
@@ -45,22 +55,30 @@ class CasesFragment() : Fragment() {
 		val caseDao = CaseRoomDB.getInstance(requireContext()).caseDao()
 		caseRepository = CaseRepository(caseDao)
 
+		val evalDao = EvalRoomDB.getInstance(requireContext()).evalDao()
+		evalRepository = EvalRepository(evalDao)
+
 		val firstTime = sharedPref.getBoolean("firstPlay", true)
 		val caseCount = sharedPref.getInt("caseCount", 0)
 
 		if (firstTime) {
 			val caseList: MutableList<Case> = mutableListOf()
+			val evalList: MutableList<Eval> = mutableListOf()
 			//val caseInfoList: MutableList<CaseInfo> = mutableListOf()
 
-			fun getKey(caseNumber: Int, questionNumber: Int): String {
+			/*fun getKey(caseNumber: Int, questionNumber: Int): String {
 				return "eval_" + (caseNumber + 1) + "_q" + questionNumber + "_array"
-			}
+			}*/
 
 			for (x in 0..caseCount) {
 				caseList.add(x, Case(x, "Case $x", "false", "false"))
 				caseList[0].isCaseEnabled = "true"
+
+				evalList.add(x, Eval(x, "Eval $x", "false"))
+
 				lifecycleScope.launch {
 					caseRepository.addToCases(caseList[x].mapToCaseUI())
+					evalRepository.addToEvaluations(evalList[x].mapToEvalUI())
 				}
 			}
 
@@ -93,14 +111,33 @@ class CasesFragment() : Fragment() {
 
 				else -> {}
 			}
+
+			when (val resource = evalRepository.getEvaluations()) {
+				is Resource.Success -> {
+					val evalUI = resource.data
+					val eval = evalUI.map { it.mapToEval() }
+					evalAdapter.updateList(eval)
+				}
+
+				is Resource.Error -> {
+					// Handle the error state, if needed
+				}
+
+				else -> {}
+			}
 		}
 
 		with(binding) {
 			rvCases.adapter = casesAdapter
+			rvEval.adapter = evalAdapter
 		}
 	}
 
 	private fun onCaseClick(id: Int) {
+		Toast.makeText(requireContext(), id.toString(), Toast.LENGTH_SHORT).show()
+	}
+
+	private fun onEvalClick(id: Int) {
 		Toast.makeText(requireContext(), id.toString(), Toast.LENGTH_SHORT).show()
 	}
 

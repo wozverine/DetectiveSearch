@@ -41,21 +41,19 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         app:colorBorder="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@id/btn_reset"
+        app:layout_constraintBottom_toTopOf="@id/btnReset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/photoSwitch"
         app:textOff="HARD MODE"
         app:textOn="EASY MODE" />
 
-
-
     <Button
-        android:id="@+id/btn_reset"
+        android:id="@+id/btnReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="@string/reset_btn"
+        android:text="@string/reset"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

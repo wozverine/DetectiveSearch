@@ -2,16 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!--<androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_detail"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/navy"
-        android:elevation="4dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
-    <include layout="@layout/fragment_cases" />
+    android:orientation="vertical">
+
+    <include layout="@layout/fragment_files" />
 
 </LinearLayout>

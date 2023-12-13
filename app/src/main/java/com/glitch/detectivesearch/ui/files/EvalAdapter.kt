@@ -3,8 +3,9 @@ package com.glitch.detectivesearch.ui.files
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.glitch.detectivesearch.R
 import com.glitch.detectivesearch.data.model.response.Eval
-import com.glitch.detectivesearch.databinding.ItemCaseBinding
+import com.glitch.detectivesearch.databinding.ItemEvalBinding
 
 class EvalAdapter(
 	private val onEvalClick: (Int) -> Unit
@@ -12,10 +13,9 @@ class EvalAdapter(
 
 	private val evalList = mutableListOf<Eval>()
 
-
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EvalViewHolder {
-		val binding = ItemCaseBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-		return EvalAdapter.EvalViewHolder(binding, onEvalClick)
+		val binding = ItemEvalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+		return EvalViewHolder(binding, onEvalClick)
 	}
 
 	override fun getItemCount(): Int {
@@ -27,11 +27,32 @@ class EvalAdapter(
 	}
 
 	class EvalViewHolder(
-		private val binding: ItemCaseBinding, val onEvalClick: (Int) -> Unit
+		private val binding: ItemEvalBinding, val onEvalClick: (Int) -> Unit
 	) : RecyclerView.ViewHolder(binding.root) {
 		fun bind(eval: Eval) {
+			with(binding) {
+				if (eval.isEvalEnabled == "false") {
+					ivEval.setImageResource(R.drawable.file_false)
+				}
+				if (eval.isEvalEnabled == "true") {
+					ivEval.setImageResource(R.drawable.file)
+				}
+				if (eval.isEvalEnabled == "done") {
+					ivEval.setImageResource(R.drawable.file_done)
+				}
 
+				tvEvalName.text = eval.evalName
+
+				root.setOnClickListener {
+					onEvalClick(eval.id)
+				}
+			}
 		}
+	}
 
+	fun updateList(list: List<Eval>) {
+		evalList.clear()
+		evalList.addAll(list)
+		notifyItemRangeChanged(0, list.size)
 	}
 }

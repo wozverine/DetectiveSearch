@@ -21,16 +21,15 @@
             android:padding="10sp">
 
             <ImageView
-                android:id="@+id/ivFile"
+                android:id="@+id/ivEval"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/file"/>
 
-
             <TextView
-                android:id="@+id/tvCaseName"
-                android:text="@string/cases"
+                android:id="@+id/tvEvalName"
+                android:text="@string/eval"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
