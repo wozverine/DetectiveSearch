@@ -38,7 +38,7 @@ public class Q2Activity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_q2);
-        setContentView(R.layout.activity_case_ques);
+        setContentView(R.layout.fragment_questions);
         //Toolbar toolbar = findViewById(R.id.toolbar_detail);
         //setSupportActionBar(toolbar);
 
@@ -47,14 +47,14 @@ public class Q2Activity extends AppCompatActivity{
         int photo=loadData("photo");
 
         country_image=findViewById(R.id.country_image_1);
-        question=findViewById(R.id.question_txt_1);
+        question=findViewById(R.id.tvQuestion);
         //question.setText(R.string.loremipsum);
-        final RadioGroup radioGroup=findViewById(R.id.rg_1);
-        btn_1=findViewById(R.id.Radio_btn_1_1);
-        btn_2=findViewById(R.id.Radio_btn_2_1);
-        btn_3=findViewById(R.id.Radio_btn_3_1);
+        final RadioGroup radioGroup=findViewById(R.id.rgQuestions);
+        btn_1=findViewById(R.id.btnRadio1);
+        btn_2=findViewById(R.id.btnRadio2);
+        btn_3=findViewById(R.id.btnRadio3);
         //btn_4=findViewById(R.id.Radio_btn_4);
-        teleport_btn =findViewById(R.id.teleport_btn_1);
+        teleport_btn =findViewById(R.id.btnTeleport);
         teleport_btn.setText(R.string.teleport);
 
         final String check_prev= getIntent().getExtras().getString("check");

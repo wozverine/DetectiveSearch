@@ -15,6 +15,7 @@ import com.glitch.detectivesearch.data.model.mappers.mapToCaseUI
 import com.glitch.detectivesearch.data.model.mappers.mapToEval
 import com.glitch.detectivesearch.data.model.mappers.mapToEvalUI
 import com.glitch.detectivesearch.data.model.response.Case
+import com.glitch.detectivesearch.data.model.response.CaseInfo
 import com.glitch.detectivesearch.data.model.response.Eval
 import com.glitch.detectivesearch.data.respository.CaseRepository
 import com.glitch.detectivesearch.data.respository.EvalRepository
@@ -64,17 +65,19 @@ class FilesFragment() : Fragment() {
 		if (firstTime) {
 			val caseList: MutableList<Case> = mutableListOf()
 			val evalList: MutableList<Eval> = mutableListOf()
-			//val caseInfoList: MutableList<CaseInfo> = mutableListOf()
 
-			/*fun getKey(caseNumber: Int, questionNumber: Int): String {
-				return "eval_" + (caseNumber + 1) + "_q" + questionNumber + "_array"
-			}*/
+			caseList.add(0, Case(0, "Case 1", "true", "false"))
+			evalList.add(0, Eval(0, "Eval 1", "false"))
+			lifecycleScope.launch {
+				caseRepository.addToCases(caseList[0].mapToCaseUI())
+				evalRepository.addToEvaluations(evalList[0].mapToEvalUI())
+			}
 
-			for (x in 0..caseCount) {
-				caseList.add(x, Case(x, "Case $x", "false", "false"))
-				caseList[0].isCaseEnabled = "true"
+			for (x in 1..caseCount) {
+				caseList.add(x, Case(x, "Case "+(x+1), "false", "false"))
+				//caseList[0].isCaseEnabled = "true"
 
-				evalList.add(x, Eval(x, "Eval $x", "false"))
+				evalList.add(x, Eval(x, "Eval "+ (x+1), "false"))
 
 				lifecycleScope.launch {
 					caseRepository.addToCases(caseList[x].mapToCaseUI())
@@ -82,18 +85,24 @@ class FilesFragment() : Fragment() {
 				}
 			}
 
-			/*for (x in 0..<caseCount) {
+			val caseInfoList: MutableList<CaseInfo> = mutableListOf()
+
+			fun getKey(caseNumber: Int, questionNumber: Int): String {
+				return "eval_" + (caseNumber + 1) + "_q" + questionNumber + "_array"
+			}
+
+			for (x in 0..<caseCount) {
 				val key = "story_" + (x + 1)
 				caseInfoList.add(
 					x, CaseInfo(
 						x,
 						getStringResource(requireContext(), key),
-						getArrayListResource(getKey(x, 1), sharedPref),
-						getArrayListResource(getKey(x, 2), sharedPref),
-						getArrayListResource(getKey(x, 3), sharedPref)
+						getStringArrayResource(requireContext(), getKey(x, 1)).toList(),
+						getStringArrayResource(requireContext(), getKey(x, 2)).toList(),
+						getStringArrayResource(requireContext(), getKey(x, 3)).toList()
 					)
 				)
-			}*/
+			}
 			sharedPreferenceFirst()
 		}
 
