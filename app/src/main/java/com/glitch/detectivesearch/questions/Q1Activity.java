@@ -41,7 +41,7 @@ public class Q1Activity extends AppCompatActivity{
         int mode=loadData("mode");
         int easy=loadData("easy");
         int photo=loadData("photo");
-        country_image=findViewById(R.id.country_image_1);
+        country_image=findViewById(R.id.ivCountry);
         question=findViewById(R.id.tvQuestion);
         //question.setText(R.string.loremipsum);
         final RadioGroup radioGroup=findViewById(R.id.rgQuestions);

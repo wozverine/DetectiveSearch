@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.glitch.detectivesearch.R;
 import com.glitch.detectivesearch.questions.Q1Activity;
 
 import java.util.Objects;
@@ -19,7 +18,7 @@ public class StoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_story);
+        setContentView(R.layout.fragment_story);
         //Toolbar toolbar = findViewById(R.id.toolbar_detail);
         //setSupportActionBar(toolbar);
 
@@ -27,10 +26,10 @@ public class StoryActivity extends AppCompatActivity {
         final String[]selected= getIntent().getExtras().getStringArray("country_array");
         final String[]wrong= getIntent().getExtras().getStringArray("wrong_array");
 
-        story=findViewById(R.id.story_txt);
+        story=findViewById(R.id.tvStory);
         int resId = getResources().getIdentifier("story_"+story_number, "string", getApplicationInfo().packageName);
         story.setText(resId);
-        cont=findViewById(R.id.continue_btn);
+        cont=findViewById(R.id.btnContinue);
         cont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

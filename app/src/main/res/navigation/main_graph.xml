@@ -11,20 +11,45 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_casesFragment"
-            app:destination="@id/casesFragment" />
+            android:id="@+id/action_homeFragment_to_filesFragment"
+            app:destination="@id/filesFragment" />
         <action
             android:id="@+id/action_homeFragment_to_optionsFragment"
             app:destination="@id/optionsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/casesFragment"
+        android:id="@+id/filesFragment"
         android:name="com.glitch.detectivesearch.ui.files.FilesFragment"
-        android:label="fragment_cases"
-        tools:layout="@layout/fragment_files" />
+        android:label="fragment_files"
+        tools:layout="@layout/fragment_files">
+        <action
+            android:id="@+id/action_filesFragment_to_storyFragment"
+            app:destination="@id/storyFragment" />
+    </fragment>
     <fragment
         android:id="@+id/optionsFragment"
         android:name="com.glitch.detectivesearch.ui.options.OptionsFragment"
         android:label="fragment_options"
         tools:layout="@layout/fragment_options" />
+    <fragment
+        android:id="@+id/storyFragment"
+        android:name="com.glitch.detectivesearch.ui.story.StoryFragment"
+        android:label="fragment_story"
+        tools:layout="@layout/fragment_story">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_storyFragment_to_questionsFragment"
+            app:destination="@id/questionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionsFragment"
+        android:name="com.glitch.detectivesearch.ui.questions.QuestionsFragment"
+        android:label="fragment_questions"
+        tools:layout="@layout/fragment_questions">
+        <argument
+            android:name="countries"
+            app:argType="string[]" />
+    </fragment>
 </navigation>

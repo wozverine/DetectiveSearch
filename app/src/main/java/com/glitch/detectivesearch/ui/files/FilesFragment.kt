@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.glitch.detectivesearch.R
 import com.glitch.detectivesearch.data.common.Resource
 import com.glitch.detectivesearch.data.model.mappers.mapToCase
 import com.glitch.detectivesearch.data.model.mappers.mapToCaseUI
@@ -74,10 +76,10 @@ class FilesFragment() : Fragment() {
 			}
 
 			for (x in 1..caseCount) {
-				caseList.add(x, Case(x, "Case "+(x+1), "false", "false"))
+				caseList.add(x, Case(x, "Case " + (x + 1), "false", "false"))
 				//caseList[0].isCaseEnabled = "true"
 
-				evalList.add(x, Eval(x, "Eval "+ (x+1), "false"))
+				evalList.add(x, Eval(x, "Eval " + (x + 1), "false"))
 
 				lifecycleScope.launch {
 					caseRepository.addToCases(caseList[x].mapToCaseUI())
@@ -87,16 +89,20 @@ class FilesFragment() : Fragment() {
 
 			val caseInfoList: MutableList<CaseInfo> = mutableListOf()
 
-			fun getKey(caseNumber: Int, questionNumber: Int): String {
+			/*fun getKey(caseNumber: Int, questionNumber: Int): String {
 				return "eval_" + (caseNumber + 1) + "_q" + questionNumber + "_array"
+			}*/
+			fun getKey(caseNumber: Int, questionNumber: Int): String {
+
+				return "eval_" + (caseNumber + 1) + "_q" + questionNumber
 			}
 
 			for (x in 0..<caseCount) {
-				val key = "story_" + (x + 1)
+				val storyKey = "story_" + (x + 1)
 				caseInfoList.add(
 					x, CaseInfo(
 						x,
-						getStringResource(requireContext(), key),
+						getStringResource(requireContext(), storyKey),
 						getStringArrayResource(requireContext(), getKey(x, 1)).toList(),
 						getStringArrayResource(requireContext(), getKey(x, 2)).toList(),
 						getStringArrayResource(requireContext(), getKey(x, 3)).toList()
@@ -143,11 +149,48 @@ class FilesFragment() : Fragment() {
 	}
 
 	private fun onCaseClick(id: Int) {
-		Toast.makeText(requireContext(), id.toString(), Toast.LENGTH_SHORT).show()
+		lifecycleScope.launch {
+			var isEnabled = "false"
+			when (val result = caseRepository.getCases()) {
+				is Resource.Success -> isEnabled = result.data[id].isCaseEnabled
+				is Resource.Fail -> result.failMessage
+				is Resource.Error -> result.errorMessage
+			}
+			if (isEnabled == "false") {
+				val toasty = "You haven't unlocked this case yet"
+				Toast.makeText(requireContext(), toasty, Toast.LENGTH_SHORT).show()
+			}
+			if (isEnabled == "true") {
+				findNavController().navigate(FilesFragmentDirections.actionFilesFragmentToStoryFragment(id))
+			}
+			if (isEnabled == "done") {
+				val toasty = "You have already solved this case"
+				Toast.makeText(requireContext(), toasty, Toast.LENGTH_SHORT).show()
+			}
+		}
 	}
 
+
 	private fun onEvalClick(id: Int) {
-		Toast.makeText(requireContext(), id.toString(), Toast.LENGTH_SHORT).show()
+		lifecycleScope.launch {
+			var isEnabled = "false"
+			when (val result = evalRepository.getEvaluations()) {
+				is Resource.Success -> isEnabled = result.data[id].isEvalEnabled
+				is Resource.Fail -> result.failMessage
+				is Resource.Error -> result.errorMessage
+			}
+			if (isEnabled == "false") {
+				val toasty = "You haven't unlocked this evaluation yet"
+				Toast.makeText(requireContext(), toasty, Toast.LENGTH_SHORT).show()
+			}
+			if (isEnabled == "true") {
+				//findNavController().navigate(R.id.action_filesFragment_to_storyFragment)
+			}
+			if (isEnabled == "done") {
+				val toasty = "You have already solved this evaluation"
+				Toast.makeText(requireContext(), toasty, Toast.LENGTH_SHORT).show()
+			}
+		}
 	}
 
 	/*fun loadData(key: String?): Int {
@@ -169,13 +212,12 @@ class FilesFragment() : Fragment() {
 		return context.resources.getStringArray(resourceId)
 	}
 
-
 	override fun onDestroyView() {
 		super.onDestroyView()
 		_binding = null
 	}
 
-	private fun sharedPreferenceFirst(){
+	private fun sharedPreferenceFirst() {
 		with(sharedPref.edit()) {
 			putBoolean("firstPlay", false)
 			apply()

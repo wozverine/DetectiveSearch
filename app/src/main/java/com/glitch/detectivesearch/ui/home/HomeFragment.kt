@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
 				findNavController().navigate(R.id.action_homeFragment_to_optionsFragment)
 			}
 			btnStart.setOnClickListener {
-				findNavController().navigate(R.id.action_homeFragment_to_casesFragment)
+				findNavController().navigate(R.id.action_homeFragment_to_filesFragment)
 			}
 		}
 	}
