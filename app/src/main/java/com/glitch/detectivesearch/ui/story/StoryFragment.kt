@@ -47,7 +47,7 @@ class StoryFragment : Fragment() {
 				is Resource.Fail -> result.failMessage
 				is Resource.Error -> result.errorMessage
 			}
-			Toast.makeText(requireContext(), toasty, Toast.LENGTH_SHORT).show()
+			//Toast.makeText(requireContext(), toasty, Toast.LENGTH_SHORT).show()
 		}
 
 		val countryList = resources.getStringArray(R.array.countries_array)
@@ -64,8 +64,8 @@ class StoryFragment : Fragment() {
 		with(binding) {
 			tvStory.text = getStringResource(requireContext(), ("story_"+(args.id+1)))
 			btnContinue.setOnClickListener {
-				findNavController().navigate(StoryFragmentDirections.actionStoryFragmentToQuestionsFragment(chosenCountries))
 			}
+			findNavController().navigate(StoryFragmentDirections.actionStoryFragmentToQuestionsFragment(chosenCountries,randomInts[0]))
 		}
 	}
 

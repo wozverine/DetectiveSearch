@@ -51,5 +51,24 @@
         <argument
             android:name="countries"
             app:argType="string[]" />
+        <argument
+            android:name="questionNumber"
+            app:argType="integer"/>
+        <action
+            android:id="@+id/action_questionsFragment_to_winFragment"
+            app:destination="@id/winFragment" />
+        <action
+            android:id="@+id/action_questionsFragment_to_failFragment"
+            app:destination="@id/failFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/winFragment"
+        android:name="com.glitch.detectivesearch.ui.win.WinFragment"
+        android:label="fragment_win"
+        tools:layout="@layout/fragment_win" />
+    <fragment
+        android:id="@+id/failFragment"
+        android:name="com.glitch.detectivesearch.ui.fail.FailFragment"
+        android:label="fail_fragment"
+        tools:layout="@layout/fragment_fail" />
 </navigation>
