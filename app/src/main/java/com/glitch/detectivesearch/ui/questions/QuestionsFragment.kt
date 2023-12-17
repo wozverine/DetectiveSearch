@@ -71,7 +71,11 @@ class QuestionsFragment : Fragment() {
 				if (radioButtonText.toString().lowercase() == correctCountry.lowercase()) {
 					if (questionCount == 3) {
 						Toast.makeText(requireContext(), "Won", Toast.LENGTH_SHORT).show()
-						findNavController().navigate(R.id.action_questionsFragment_to_winFragment)
+						findNavController().navigate(
+							QuestionsFragmentDirections.actionQuestionsFragmentToWinFragment(
+								args.caseId
+							)
+						)
 						//TODO call fragment_win
 					}
 					if (questionCount < 3) {
@@ -84,7 +88,6 @@ class QuestionsFragment : Fragment() {
 				} else {
 					Toast.makeText(requireContext(), "Wrong Answer", Toast.LENGTH_SHORT).show()
 					findNavController().navigate(R.id.action_questionsFragment_to_failFragment)
-					//TODO call fragment_fail
 				}
 				rgQuestions.clearCheck()
 			}

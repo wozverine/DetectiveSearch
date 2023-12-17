@@ -1,5 +1,6 @@
 package com.glitch.detectivesearch.data.respository
 
+import android.util.Log
 import com.glitch.detectivesearch.data.common.Resource
 import com.glitch.detectivesearch.data.model.mappers.mapCaseEntityToCaseUI
 import com.glitch.detectivesearch.data.model.mappers.mapToCaseEntity
@@ -30,5 +31,37 @@ class CaseRepository(
 
 	suspend fun clearCases() = withContext(Dispatchers.IO) {
 		caseDao.clearCases()
+	}
+
+	/*suspend fun updateCase(caseId: Int, updatedCase: Case): Resource<Unit> {
+		return try {
+			// Assuming you have a function to update the case in your data source
+			caseDao.updateCase(caseId, updatedCase)
+			Resource.Success(Unit)
+		} catch (e: Exception) {
+			// Handle the error appropriately
+			Resource.Error("Failed to update the case: ${e.message}")
+		}
+	}*/
+
+	suspend fun updateCase(caseId: Int, changeCase: String): Resource<Unit> = withContext(Dispatchers.IO) {
+		try {
+			val case = caseDao.getCases().find { it.caseId == caseId }
+			Log.e("CaseRepository","updateCaseOutside")
+			if (case != null) {
+				var updatedCaseEntity = case.copy(
+					isCaseEnabled = changeCase
+				)
+				caseDao.updateCase(updatedCaseEntity)
+				Log.e("CaseRepository","updateCaseInside")
+				Resource.Success(Unit)
+			} else {
+				Log.e("CaseRepository", "Case not found")
+				Resource.Error("Case not found")
+			}
+		} catch (e: Exception) {
+			Log.e("CaseRepository", "Failed to update the case: ${e.message}")
+			Resource.Error("Failed to update the case: ${e.message}")
+		}
 	}
 }

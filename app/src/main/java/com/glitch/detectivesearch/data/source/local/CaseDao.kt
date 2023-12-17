@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.glitch.detectivesearch.data.model.response.CaseEntity
 
 @Dao
@@ -24,4 +25,7 @@ interface CaseDao {
 
 	@Query("DELETE FROM cases")
 	fun clearCases()
+
+	@Update
+	fun updateCase(caseEntity: CaseEntity)
 }

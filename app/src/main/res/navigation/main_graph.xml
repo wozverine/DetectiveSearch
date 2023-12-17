@@ -54,6 +54,9 @@
         <argument
             android:name="questionNumber"
             app:argType="integer"/>
+        <argument
+            android:name="caseId"
+            app:argType="integer" />
         <action
             android:id="@+id/action_questionsFragment_to_winFragment"
             app:destination="@id/winFragment" />
@@ -65,7 +68,11 @@
         android:id="@+id/winFragment"
         android:name="com.glitch.detectivesearch.ui.win.WinFragment"
         android:label="fragment_win"
-        tools:layout="@layout/fragment_win" />
+        tools:layout="@layout/fragment_win">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/failFragment"
         android:name="com.glitch.detectivesearch.ui.fail.FailFragment"

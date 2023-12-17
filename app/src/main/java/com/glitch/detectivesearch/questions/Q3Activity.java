@@ -16,7 +16,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.glitch.detectivesearch.FailActivity;
 import com.glitch.detectivesearch.R;
 import com.glitch.detectivesearch.WinActivity;
 
@@ -174,12 +173,12 @@ public class Q3Activity extends AppCompatActivity {
                     Q3Activity.this.finish();
                     //Log.v("check 3","true");
                 }else{
-                    Intent intent = new Intent(Q3Activity.this, FailActivity.class);
+                    /*Intent intent = new Intent(Q3Activity.this, FailActivity.class);
                     Bundle int_bundle = new Bundle();
                     int_bundle.putInt("case_number",story_number);
                     intent.putExtras(int_bundle);
                     startActivity(intent);
-                    Q3Activity.this.finish();
+                    Q3Activity.this.finish();*/
                     //Log.v("check 3","false");
                 }
             }else{

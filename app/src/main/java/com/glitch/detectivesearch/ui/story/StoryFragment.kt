@@ -7,17 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.glitch.detectivesearch.R
-import com.glitch.detectivesearch.data.common.Resource
 import com.glitch.detectivesearch.data.respository.CaseRepository
 import com.glitch.detectivesearch.data.source.local.CaseRoomDB
 import com.glitch.detectivesearch.databinding.FragmentStoryBinding
-import kotlinx.coroutines.launch
-import java.util.Arrays
 import kotlin.random.Random
 
 class StoryFragment : Fragment() {
@@ -40,15 +35,13 @@ class StoryFragment : Fragment() {
 		val caseDao = CaseRoomDB.getInstance(requireContext()).caseDao()
 		caseRepository = CaseRepository(caseDao)
 
-		lifecycleScope.launch {
-			var toasty = "false"
+		/*lifecycleScope.launch {
 			when (val result = caseRepository.getCases()) {
 				is Resource.Success -> toasty = result.data[args.id].caseName
 				is Resource.Fail -> result.failMessage
 				is Resource.Error -> result.errorMessage
 			}
-			//Toast.makeText(requireContext(), toasty, Toast.LENGTH_SHORT).show()
-		}
+		}*/
 
 		val countryList = resources.getStringArray(R.array.countries_array)
 
@@ -64,8 +57,9 @@ class StoryFragment : Fragment() {
 		with(binding) {
 			tvStory.text = getStringResource(requireContext(), ("story_"+(args.id+1)))
 			btnContinue.setOnClickListener {
+				findNavController().navigate(StoryFragmentDirections.actionStoryFragmentToQuestionsFragment(chosenCountries,randomInts[0],args.id))
 			}
-			findNavController().navigate(StoryFragmentDirections.actionStoryFragmentToQuestionsFragment(chosenCountries,randomInts[0]))
+
 		}
 	}
 

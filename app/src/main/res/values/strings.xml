@@ -5,6 +5,7 @@
     <string name="options">OPTIONS</string>
     <string name="cases">Case</string>
     <string name="eval">Evaluation</string>
+    <string name="story">Story</string>
 
     <string-array name="countries_array">
         <item>Argentina</item>

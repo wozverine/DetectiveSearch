@@ -68,14 +68,27 @@ class FilesFragment() : Fragment() {
 			val caseList: MutableList<Case> = mutableListOf()
 			val evalList: MutableList<Eval> = mutableListOf()
 
-			caseList.add(0, Case(0, "Case 1", "true", "false"))
-			evalList.add(0, Eval(0, "Eval 1", "false"))
+			/*caseList.add(0, Case(0, "Case 1", "true", "false"))
+			evalList.add(0, Eval(0, "Eval 1", "false"))*/
+
 			lifecycleScope.launch {
+				caseList.add(0, Case(0, "Case 1", "true", "false"))
+				evalList.add(0, Eval(0, "Eval 1", "false"))
 				caseRepository.addToCases(caseList[0].mapToCaseUI())
 				evalRepository.addToEvaluations(evalList[0].mapToEvalUI())
+
+				for (x in 1..caseCount) {
+					caseList.add(x, Case(x, "Case " + (x + 1), "false", "false"))
+					evalList.add(x, Eval(x, "Eval " + (x + 1), "false"))
+
+					caseRepository.addToCases(caseList[x].mapToCaseUI())
+					evalRepository.addToEvaluations(evalList[x].mapToEvalUI())
+				}
+				updateUI()
 			}
 
-			for (x in 1..caseCount) {
+
+			/*for (x in 1..caseCount) {
 				caseList.add(x, Case(x, "Case " + (x + 1), "false", "false"))
 				//caseList[0].isCaseEnabled = "true"
 
@@ -85,31 +98,34 @@ class FilesFragment() : Fragment() {
 					caseRepository.addToCases(caseList[x].mapToCaseUI())
 					evalRepository.addToEvaluations(evalList[x].mapToEvalUI())
 				}
-			}
+			}*/
 
-			val caseInfoList: MutableList<CaseInfo> = mutableListOf()
+			//val caseInfoList: MutableList<CaseInfo> = mutableListOf()
 
 			/*fun getKey(caseNumber: Int, questionNumber: Int): String {
 				return "eval_" + (caseNumber + 1) + "_q" + questionNumber + "_array"
 			}*/
-			fun getKey(caseNumber: Int, questionNumber: Int): String {
 
-				return "eval_" + (caseNumber + 1) + "_q" + questionNumber
-			}
-
-			for (x in 0..<caseCount) {
+			/*for (x in 0..<caseCount) {
 				val storyKey = "story_" + (x + 1)
 				caseInfoList.add(
 					x, CaseInfo(
-						x,
-						getStringResource(requireContext(), storyKey),
-						getStringArrayResource(requireContext(), getKey(x, 1)).toList(),
-						getStringArrayResource(requireContext(), getKey(x, 2)).toList(),
-						getStringArrayResource(requireContext(), getKey(x, 3)).toList()
+						id = x,
+						story = getStringResource(requireContext(), storyKey),
+						"",
+						"",
+						""
+								*//*question1 = getStringArrayResource(requireContext(), getKey(x, 1)).toList(),
+						question2 = getStringArrayResource(requireContext(), getKey(x, 2)).toList(),
+						question3 = getStringArrayResource(requireContext(), getKey(x, 3)).toList()*//*
 					)
 				)
-			}
+			}*/
 			sharedPreferenceFirst()
+		} else {
+			lifecycleScope.launch {
+				updateUI()
+			}
 		}
 
 		lifecycleScope.launch {
@@ -148,6 +164,39 @@ class FilesFragment() : Fragment() {
 		}
 	}
 
+	private suspend fun updateUI() {
+		// Update UI with cases
+		when (val resource = caseRepository.getCases()) {
+			is Resource.Success -> {
+				val casesUI = resource.data
+				val cases = casesUI.map { it.mapToCase() }
+				casesAdapter.updateList(cases)
+			}
+
+			is Resource.Error -> {
+				// Handle the error state, if needed
+			}
+
+			else -> {}
+		}
+
+		// Update UI with evaluations
+		when (val resource = evalRepository.getEvaluations()) {
+			is Resource.Success -> {
+				val evalUI = resource.data
+				val eval = evalUI.map { it.mapToEval() }
+				evalAdapter.updateList(eval)
+			}
+
+			is Resource.Error -> {
+				// Handle the error state, if needed
+			}
+
+			else -> {}
+		}
+	}
+
+
 	private fun onCaseClick(id: Int) {
 		lifecycleScope.launch {
 			var isEnabled = "false"
@@ -161,7 +210,11 @@ class FilesFragment() : Fragment() {
 				Toast.makeText(requireContext(), toasty, Toast.LENGTH_SHORT).show()
 			}
 			if (isEnabled == "true") {
-				findNavController().navigate(FilesFragmentDirections.actionFilesFragmentToStoryFragment(id))
+				findNavController().navigate(
+					FilesFragmentDirections.actionFilesFragmentToStoryFragment(
+						id
+					)
+				)
 			}
 			if (isEnabled == "done") {
 				val toasty = "You have already solved this case"
@@ -169,7 +222,6 @@ class FilesFragment() : Fragment() {
 			}
 		}
 	}
-
 
 	private fun onEvalClick(id: Int) {
 		lifecycleScope.launch {
@@ -192,12 +244,6 @@ class FilesFragment() : Fragment() {
 			}
 		}
 	}
-
-	/*fun loadData(key: String?): Int {
-		val sharedPref = activity?.getSharedPreferences(
-			getString(R.string.key), Context.MODE_PRIVATE)
-		//return prefs.getInt(KEY, 0)
-	}*/
 
 	private fun getStringResource(context: Context, name: String): String {
 		return resources.getString(
