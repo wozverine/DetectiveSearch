@@ -17,6 +17,7 @@
             android:id="@+id/action_homeFragment_to_optionsFragment"
             app:destination="@id/optionsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/filesFragment"
         android:name="com.glitch.detectivesearch.ui.files.FilesFragment"
@@ -26,11 +27,13 @@
             android:id="@+id/action_filesFragment_to_storyFragment"
             app:destination="@id/storyFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/optionsFragment"
         android:name="com.glitch.detectivesearch.ui.options.OptionsFragment"
         android:label="fragment_options"
         tools:layout="@layout/fragment_options" />
+
     <fragment
         android:id="@+id/storyFragment"
         android:name="com.glitch.detectivesearch.ui.story.StoryFragment"
@@ -41,8 +44,11 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_storyFragment_to_questionsFragment"
-            app:destination="@id/questionsFragment" />
+            app:destination="@id/questionsFragment"
+            app:popUpTo="@id/filesFragment"
+            app:popUpToInclusive="false" />
     </fragment>
+
     <fragment
         android:id="@+id/questionsFragment"
         android:name="com.glitch.detectivesearch.ui.questions.QuestionsFragment"
@@ -53,17 +59,22 @@
             app:argType="string[]" />
         <argument
             android:name="questionNumber"
-            app:argType="integer"/>
+            app:argType="integer" />
         <argument
             android:name="caseId"
             app:argType="integer" />
         <action
             android:id="@+id/action_questionsFragment_to_winFragment"
-            app:destination="@id/winFragment" />
+            app:destination="@id/winFragment"
+            app:popUpTo="@id/filesFragment"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_questionsFragment_to_failFragment"
-            app:destination="@id/failFragment" />
+            app:destination="@id/failFragment"
+            app:popUpTo="@id/filesFragment"
+            app:popUpToInclusive="false" />
     </fragment>
+
     <fragment
         android:id="@+id/winFragment"
         android:name="com.glitch.detectivesearch.ui.win.WinFragment"
@@ -73,6 +84,7 @@
             android:name="id"
             app:argType="integer" />
     </fragment>
+
     <fragment
         android:id="@+id/failFragment"
         android:name="com.glitch.detectivesearch.ui.fail.FailFragment"

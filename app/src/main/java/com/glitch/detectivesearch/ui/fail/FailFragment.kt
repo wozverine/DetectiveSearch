@@ -25,6 +25,7 @@ class FailFragment : Fragment() {
 
 		with(binding) {
 			btnFail.setOnClickListener {
+				findNavController().popBackStack(R.id.filesFragment,false)
 				findNavController().navigate(R.id.homeFragment)
 			}
 		}

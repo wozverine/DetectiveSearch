@@ -41,9 +41,9 @@ class WinFragment : Fragment() {
 				lifecycleScope.launch {
 					caseRepository.updateCase(args.id, "done")
 					caseRepository.updateCase(args.id + 1, "true")
+					findNavController().popBackStack(R.id.filesFragment,false)
 					findNavController().navigate(R.id.filesFragment)
 				}
-
 			}
 		}
 	}

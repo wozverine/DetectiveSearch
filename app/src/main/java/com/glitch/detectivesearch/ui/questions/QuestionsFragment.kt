@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.glitch.detectivesearch.R
@@ -24,11 +26,13 @@ class QuestionsFragment : Fragment() {
 
 	private val args by navArgs<QuestionsFragmentArgs>()
 
+	private lateinit var allCountryList: Array<String>
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
 		_binding = FragmentQuestionsBinding.inflate(inflater, container, false)
+		allCountryList = resources.getStringArray(R.array.countries_array)
 		return binding.root
 	}
 
@@ -43,9 +47,8 @@ class QuestionsFragment : Fragment() {
 
 		var questionCount = 1
 
-		val allCountryList = resources.getStringArray(R.array.countries_array)
 		allCountryList.drop(args.questionNumber)
-		val countryList = args.countries
+		val firstThreeList = args.countries
 		var correctCountry = ""
 
 		with(binding) {
@@ -54,13 +57,32 @@ class QuestionsFragment : Fragment() {
 				val key: String = correctCountry + "_1"
 				countryList.shuffle()
 
-				tvQuestion.text = getStringResource(requireContext(), key)
+				if (easyMode) {
+					tvQuestion.text = getStringResource(requireContext(), key)
+				} else {
+					val hardKey: String = correctCountry + "_2"
+					tvQuestion.text = getStringResource(requireContext(), hardKey)
+				}
+
 				btnRadio1.text = countryList[0]
 				btnRadio2.text = countryList[1]
 				btnRadio3.text = countryList[2]
-				ivCountry.setImageDrawable(getImageResource(requireContext(), key.lowercase()))
+
+				if (flagMode) {
+					ivCountry.setImageDrawable(getImageResource(requireContext(), key.lowercase()))
+				} else {
+					val flagKey: String = correctCountry + "_flag"
+					ivCountry.setImageDrawable(
+						getImageResource(
+							requireContext(),
+							flagKey.lowercase()
+						)
+					)
+				}
 			}
-			setTexts(countryList)
+			if (!photoMode) ivCountry.isVisible = false
+
+			setTexts(firstThreeList)
 
 			btnTeleport.setOnClickListener {
 				val radioButtonText = when (rgQuestions.checkedRadioButtonId) {
@@ -71,37 +93,52 @@ class QuestionsFragment : Fragment() {
 				if (radioButtonText.toString().lowercase() == correctCountry.lowercase()) {
 					if (questionCount == 3) {
 						Toast.makeText(requireContext(), "Won", Toast.LENGTH_SHORT).show()
+
+						/*val navOptions = NavOptions.Builder()
+							.setPopUpTo(R.id.filesFragment, false)
+							.build()
+
+						findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToWinFragment(args.caseId), null, navOptions)*/
+
 						findNavController().navigate(
 							QuestionsFragmentDirections.actionQuestionsFragmentToWinFragment(
 								args.caseId
 							)
 						)
-						//TODO call fragment_win
 					}
 					if (questionCount < 3) {
-						val newCountryList = getNewCountries(countryList)
-						setTexts(newCountryList)
+						setTexts(getNewCountries())
 						questionCount += 1
 						Toast.makeText(requireContext(), "Correct Answer", Toast.LENGTH_SHORT)
 							.show()
 					}
 				} else {
 					Toast.makeText(requireContext(), "Wrong Answer", Toast.LENGTH_SHORT).show()
-					findNavController().navigate(R.id.action_questionsFragment_to_failFragment)
+					val navOptions = NavOptions.Builder()
+						.setPopUpTo(R.id.filesFragment, false)
+						.build()
+
+					findNavController().navigate(
+						R.id.action_questionsFragment_to_failFragment,
+						null,
+						navOptions
+					)
+
+					//findNavController().navigate(R.id.action_questionsFragment_to_failFragment)
 				}
 				rgQuestions.clearCheck()
 			}
 		}
 	}
 
-	private fun getNewCountries(allCountryList: Array<String>): Array<String> {
+	private fun getNewCountries(): Array<String> {
 		val randomInts = generateSequence {
 			Random.nextInt(allCountryList.size)
 		}
 			.distinct()
 			.take(3)
 			.toList()
-		var newCountries = arrayOf(
+		val newCountries = arrayOf(
 			allCountryList[randomInts[0]],
 			allCountryList[randomInts[1]],
 			allCountryList[randomInts[2]]

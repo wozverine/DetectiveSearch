@@ -52,12 +52,22 @@ class StoryFragment : Fragment() {
 			.take(3)
 			.toList()
 
-		val chosenCountries: Array<String> = arrayOf(countryList[randomInts[0]],countryList[randomInts[1]],countryList[randomInts[2]])
+		val chosenCountries: Array<String> = arrayOf(
+			countryList[randomInts[0]],
+			countryList[randomInts[1]],
+			countryList[randomInts[2]]
+		)
 
 		with(binding) {
-			tvStory.text = getStringResource(requireContext(), ("story_"+(args.id+1)))
+			tvStory.text = getStringResource(requireContext(), ("story_" + (args.id + 1)))
 			btnContinue.setOnClickListener {
-				findNavController().navigate(StoryFragmentDirections.actionStoryFragmentToQuestionsFragment(chosenCountries,randomInts[0],args.id))
+				findNavController().navigate(
+					StoryFragmentDirections.actionStoryFragmentToQuestionsFragment(
+						chosenCountries,
+						randomInts[0],
+						args.id
+					)
+				)
 			}
 
 		}
@@ -70,6 +80,7 @@ class StoryFragment : Fragment() {
 			)
 		)
 	}
+
 	override fun onDestroyView() {
 		super.onDestroyView()
 		_binding = null
