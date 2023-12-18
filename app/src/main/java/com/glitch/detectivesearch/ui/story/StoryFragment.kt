@@ -35,14 +35,6 @@ class StoryFragment : Fragment() {
 		val caseDao = CaseRoomDB.getInstance(requireContext()).caseDao()
 		caseRepository = CaseRepository(caseDao)
 
-		/*lifecycleScope.launch {
-			when (val result = caseRepository.getCases()) {
-				is Resource.Success -> toasty = result.data[args.id].caseName
-				is Resource.Fail -> result.failMessage
-				is Resource.Error -> result.errorMessage
-			}
-		}*/
-
 		val countryList = resources.getStringArray(R.array.countries_array)
 
 		val randomInts = generateSequence {
@@ -69,7 +61,6 @@ class StoryFragment : Fragment() {
 					)
 				)
 			}
-
 		}
 	}
 

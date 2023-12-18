@@ -28,19 +28,19 @@ public class E2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_eval_ques);
+        setContentView(R.layout.fragment_evaluations);
         l = findViewById(R.id.lll);
         l.setBackgroundResource(R.drawable.eval_background_2);
         //Toolbar toolbar = findViewById(R.id.toolbar_detail);
         //setSupportActionBar(toolbar);
-        question = findViewById(R.id.eval_txt_1);
+        question = findViewById(R.id.tvEval);
         //question.setText(R.string.loremipsum);
-        final RadioGroup radioGroup = findViewById(R.id.rg_eval);
-        btn_1 = findViewById(R.id.Radio_btn_1_eval);
-        btn_2 = findViewById(R.id.Radio_btn_2_eval);
-        btn_3 = findViewById(R.id.Radio_btn_3_eval);
+        final RadioGroup radioGroup = findViewById(R.id.rgEval);
+        btn_1 = findViewById(R.id.rbEval1);
+        btn_2 = findViewById(R.id.rbEval2);
+        btn_3 = findViewById(R.id.rbEval3);
         //btn_4=findViewById(R.id.Radio_btn_4);
-        next_btn = findViewById(R.id.next_eval_btn);
+        next_btn = findViewById(R.id.btnNextEval);
         next_btn.setText(R.string.next);
 
         final int story_number = Objects.requireNonNull(getIntent().getExtras()).getInt("case_number");

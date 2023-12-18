@@ -28,8 +28,7 @@ class QuestionsFragment : Fragment() {
 
 	private lateinit var allCountryList: Array<String>
 	override fun onCreateView(
-		inflater: LayoutInflater, container: ViewGroup?,
-		savedInstanceState: Bundle?
+		inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
 	): View {
 		_binding = FragmentQuestionsBinding.inflate(inflater, container, false)
 		allCountryList = resources.getStringArray(R.array.countries_array)
@@ -74,8 +73,7 @@ class QuestionsFragment : Fragment() {
 					val flagKey: String = correctCountry + "_flag"
 					ivCountry.setImageDrawable(
 						getImageResource(
-							requireContext(),
-							flagKey.lowercase()
+							requireContext(), flagKey.lowercase()
 						)
 					)
 				}
@@ -109,22 +107,14 @@ class QuestionsFragment : Fragment() {
 					if (questionCount < 3) {
 						setTexts(getNewCountries())
 						questionCount += 1
-						Toast.makeText(requireContext(), "Correct Answer", Toast.LENGTH_SHORT)
-							.show()
 					}
 				} else {
-					Toast.makeText(requireContext(), "Wrong Answer", Toast.LENGTH_SHORT).show()
-					val navOptions = NavOptions.Builder()
-						.setPopUpTo(R.id.filesFragment, false)
-						.build()
+					val navOptions =
+						NavOptions.Builder().setPopUpTo(R.id.filesFragment, false).build()
 
 					findNavController().navigate(
-						R.id.action_questionsFragment_to_failFragment,
-						null,
-						navOptions
+						R.id.action_questionsFragment_to_failFragment, null, navOptions
 					)
-
-					//findNavController().navigate(R.id.action_questionsFragment_to_failFragment)
 				}
 				rgQuestions.clearCheck()
 			}
@@ -134,10 +124,7 @@ class QuestionsFragment : Fragment() {
 	private fun getNewCountries(): Array<String> {
 		val randomInts = generateSequence {
 			Random.nextInt(allCountryList.size)
-		}
-			.distinct()
-			.take(3)
-			.toList()
+		}.distinct().take(3).toList()
 		val newCountries = arrayOf(
 			allCountryList[randomInts[0]],
 			allCountryList[randomInts[1]],
@@ -163,14 +150,8 @@ class QuestionsFragment : Fragment() {
 		)
 	}
 
-	private fun getStringArrayResource(context: Context, name: String): Array<String> {
-		val resourceId = context.resources.getIdentifier(name, "array", context.packageName)
-		return context.resources.getStringArray(resourceId)
-	}
-
 	override fun onDestroyView() {
 		super.onDestroyView()
 		_binding = null
 	}
-
 }

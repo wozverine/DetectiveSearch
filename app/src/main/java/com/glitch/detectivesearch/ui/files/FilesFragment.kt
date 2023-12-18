@@ -87,7 +87,6 @@ class FilesFragment() : Fragment() {
 				updateUI()
 			}
 
-
 			/*for (x in 1..caseCount) {
 				caseList.add(x, Case(x, "Case " + (x + 1), "false", "false"))
 				//caseList[0].isCaseEnabled = "true"
@@ -211,9 +210,7 @@ class FilesFragment() : Fragment() {
 			}
 			if (isEnabled == "true") {
 				findNavController().navigate(
-					FilesFragmentDirections.actionFilesFragmentToStoryFragment(
-						id
-					)
+					FilesFragmentDirections.actionFilesFragmentToStoryFragment(id)
 				)
 			}
 			if (isEnabled == "done") {
@@ -236,7 +233,8 @@ class FilesFragment() : Fragment() {
 				Toast.makeText(requireContext(), toasty, Toast.LENGTH_SHORT).show()
 			}
 			if (isEnabled == "true") {
-				//findNavController().navigate(R.id.action_filesFragment_to_storyFragment)
+				FilesFragmentDirections.actionFilesFragmentToStoryFragment(id)
+				//findNavController().navigate(R.id.action_storyFragment_to_evaluationsFragment)
 			}
 			if (isEnabled == "done") {
 				val toasty = "You have already solved this evaluation"
