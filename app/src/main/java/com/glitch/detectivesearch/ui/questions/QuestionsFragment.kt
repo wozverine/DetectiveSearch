@@ -1,5 +1,6 @@
 package com.glitch.detectivesearch.ui.questions
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
@@ -138,6 +139,7 @@ class QuestionsFragment : Fragment() {
 		return newCountries
 	}
 
+	@SuppressLint("DiscouragedApi")
 	private fun getStringResource(context: Context, name: String): String {
 		return resources.getString(
 			context.resources.getIdentifier(
@@ -146,6 +148,7 @@ class QuestionsFragment : Fragment() {
 		)
 	}
 
+	@SuppressLint("DiscouragedApi")
 	private fun getImageResource(context: Context, name: String): Drawable? {
 		return ContextCompat.getDrawable(
 			context, context.resources.getIdentifier(

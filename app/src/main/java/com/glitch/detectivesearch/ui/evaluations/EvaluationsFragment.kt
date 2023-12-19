@@ -1,5 +1,6 @@
 package com.glitch.detectivesearch.ui.evaluations
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -91,6 +92,7 @@ class EvaluationsFragment : Fragment() {
 		}
 	}
 
+	@SuppressLint("DiscouragedApi")
 	private fun getStringArrayResource(context: Context, name: String): Array<String> {
 		val resourceId = context.resources.getIdentifier(name, "array", context.packageName)
 		return context.resources.getStringArray(resourceId)

@@ -1,6 +1,5 @@
 package com.glitch.detectivesearch.data.respository
 
-import android.util.Log
 import com.glitch.detectivesearch.data.common.Resource
 import com.glitch.detectivesearch.data.model.mappers.mapCaseEntityToCaseUI
 import com.glitch.detectivesearch.data.model.mappers.mapToCaseEntity
@@ -48,7 +47,7 @@ class CaseRepository(
 		try {
 			val case = caseDao.getCases().find { it.caseId == caseId }
 			if (case != null) {
-				var updatedCaseEntity = case.copy(
+				val updatedCaseEntity = case.copy(
 					isCaseEnabled = changeCase
 				)
 				caseDao.updateCase(updatedCaseEntity)

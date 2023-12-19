@@ -15,15 +15,6 @@ fun Case.mapToCaseUI() = CaseUI(
 	isEvalEnabled = isEvalEnabled.orEmpty()
 )
 
-fun List<Case>.mapCaseToCaseUI() = map {
-	CaseUI(
-		id = it.id,
-		caseName = it.caseName.orEmpty(),
-		isCaseEnabled = it.isCaseEnabled.orEmpty(),
-		isEvalEnabled = it.isEvalEnabled.orEmpty()
-	)
-}
-
 fun CaseUI.mapToCaseEntity() = CaseEntity(
 	caseId = id,
 	caseName = caseName,
@@ -52,14 +43,6 @@ fun Eval.mapToEvalUI() = EvalUI(
 	evalName = evalName.orEmpty(),
 	isEvalEnabled = isEvalEnabled.orEmpty()
 )
-
-fun List<Eval>.mapEvalToEvalUI() = map {
-	EvalUI(
-		id = it.id,
-		evalName = it.evalName.orEmpty(),
-		isEvalEnabled = it.isEvalEnabled.orEmpty()
-	)
-}
 
 fun EvalUI.mapToEvalEntity() = EvalEntity(
 	evalId = id,

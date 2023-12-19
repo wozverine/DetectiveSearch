@@ -36,7 +36,7 @@ class EvalRepository (
 		try {
 			val evaluation = evalDao.getEvaluations().find { it.evalId == evalId }
 			if (evaluation != null) {
-				var updatedEvalEntity = evaluation.copy(
+				val updatedEvalEntity = evaluation.copy(
 					isEvalEnabled = changeEval
 				)
 				evalDao.updateEvaluations(updatedEvalEntity)

@@ -1,5 +1,6 @@
 package com.glitch.detectivesearch.ui.story
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -64,6 +65,7 @@ class StoryFragment : Fragment() {
 		}
 	}
 
+	@SuppressLint("DiscouragedApi")
 	private fun getStringResource(context: Context, name: String): String {
 		return resources.getString(
 			context.resources.getIdentifier(
