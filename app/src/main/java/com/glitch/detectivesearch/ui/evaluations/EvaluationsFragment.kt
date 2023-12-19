@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.glitch.detectivesearch.databinding.FragmentEvaluationsBinding
 import com.glitch.detectivesearch.ui.questions.QuestionsFragmentArgs
+import com.glitch.detectivesearch.ui.questions.QuestionsFragmentDirections
 
 class EvaluationsFragment : Fragment() {
 	private var _binding: FragmentEvaluationsBinding? = null
@@ -33,15 +34,31 @@ class EvaluationsFragment : Fragment() {
 
 		sharedPref = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
 
-		val key = "eval_" + (args.caseId + 1) + "_q" + "1" + "_array"
-		val evaluations = getStringArrayResource(requireContext(), key)
+		var questionCount = 1
 
 		with(binding) {
-			tvEval.text = evaluations[0]
-			rbEval1.text = evaluations[1]
-			rbEval2.text = evaluations[2]
-			rbEval3.text = evaluations[3]
+			fun setTexts() {
+				val key = "eval_" + (args.caseId + 1) + "_q" + questionCount + "_array"
+				val evaluations = getStringArrayResource(requireContext(), key)
+				tvEval.text = evaluations[0]
+				rbEval1.text = evaluations[1]
+				rbEval2.text = evaluations[2]
+				rbEval3.text = evaluations[3]
+				questionCount += 1
+			}
+			setTexts()
+
 			btnNextEval.setOnClickListener {
+				if (questionCount == 3) {
+					findNavController().navigate(
+						QuestionsFragmentDirections.actionQuestionsFragmentToWinFragment(
+							args.caseId
+						)
+					)
+				}
+				if (questionCount < 3) {
+					setTexts()
+				}
 
 			}
 		}
