@@ -9,9 +9,9 @@
 
     <com.github.angads25.toggle.widget.LabeledSwitch
         android:id="@+id/flagSwitch"
-        android:layout_width="160sp"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:layout_width="200sp"
+        android:layout_height="40sp"
+        android:textSize="30sp"
         app:colorBorder="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@id/photoSwitch"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,10 +23,10 @@
 
     <com.github.angads25.toggle.widget.LabeledSwitch
         android:id="@+id/photoSwitch"
-        android:layout_width="160sp"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10sp"
-        android:textSize="20sp"
+        android:layout_width="200sp"
+        android:layout_height="40sp"
+        android:layout_marginVertical="20sp"
+        android:textSize="30sp"
         app:colorBorder="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@id/easySwitch"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,16 +37,16 @@
 
     <com.github.angads25.toggle.widget.LabeledSwitch
         android:id="@+id/easySwitch"
-        android:layout_width="160sp"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:layout_width="210sp"
+        android:layout_height="40sp"
+        android:textSize="30sp"
         app:colorBorder="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@id/btnReset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/photoSwitch"
-        app:textOff="HARD MODE"
-        app:textOn="EASY MODE" />
+        app:textOff="Hard Mode"
+        app:textOn="Easy Mode" />
 
     <Button
         android:id="@+id/btnReset"
@@ -55,6 +55,7 @@
         android:layout_marginTop="100dp"
         android:text="@string/reset"
         android:textStyle="bold"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

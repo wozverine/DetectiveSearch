@@ -12,7 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.glitch.detectivesearch.R
 import com.glitch.detectivesearch.data.respository.CaseRepository
+import com.glitch.detectivesearch.data.respository.EvalRepository
 import com.glitch.detectivesearch.data.source.local.CaseRoomDB
+import com.glitch.detectivesearch.data.source.local.EvalRoomDB
 import com.glitch.detectivesearch.databinding.FragmentOptionsBinding
 import kotlinx.coroutines.launch
 
@@ -23,6 +25,7 @@ class OptionsFragment : Fragment() {
 	private lateinit var sharedPref: SharedPreferences
 
 	private lateinit var caseRepository: CaseRepository
+	private lateinit var evalRepository: EvalRepository
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -55,7 +58,9 @@ class OptionsFragment : Fragment() {
 		super.onViewCreated(view, savedInstanceState)
 
 		val caseDao = CaseRoomDB.getInstance(requireContext()).caseDao()
+		val evalDao = EvalRoomDB.getInstance(requireContext()).evalDao()
 		caseRepository = CaseRepository(caseDao)
+		evalRepository = EvalRepository(evalDao)
 		sharedPref = requireActivity().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
 
 		with(binding) {
@@ -94,8 +99,9 @@ class OptionsFragment : Fragment() {
 				}
 				lifecycleScope.launch {
 					caseRepository.clearCases()
+					evalRepository.clearEvaluations()
+					findNavController().navigate(R.id.homeFragment)
 				}
-				findNavController().navigate(R.id.homeFragment)
 			}
 		}
 	}

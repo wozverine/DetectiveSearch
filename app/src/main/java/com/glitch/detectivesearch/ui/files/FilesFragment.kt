@@ -10,14 +10,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.glitch.detectivesearch.R
 import com.glitch.detectivesearch.data.common.Resource
 import com.glitch.detectivesearch.data.model.mappers.mapToCase
 import com.glitch.detectivesearch.data.model.mappers.mapToCaseUI
 import com.glitch.detectivesearch.data.model.mappers.mapToEval
 import com.glitch.detectivesearch.data.model.mappers.mapToEvalUI
 import com.glitch.detectivesearch.data.model.response.Case
-import com.glitch.detectivesearch.data.model.response.CaseInfo
 import com.glitch.detectivesearch.data.model.response.Eval
 import com.glitch.detectivesearch.data.respository.CaseRepository
 import com.glitch.detectivesearch.data.respository.EvalRepository
@@ -26,7 +24,7 @@ import com.glitch.detectivesearch.data.source.local.EvalRoomDB
 import com.glitch.detectivesearch.databinding.FragmentFilesBinding
 import kotlinx.coroutines.launch
 
-class FilesFragment() : Fragment() {
+class FilesFragment : Fragment() {
 	private var _binding: FragmentFilesBinding? = null
 	private val binding get() = _binding!!
 
@@ -68,16 +66,13 @@ class FilesFragment() : Fragment() {
 			val caseList: MutableList<Case> = mutableListOf()
 			val evalList: MutableList<Eval> = mutableListOf()
 
-			/*caseList.add(0, Case(0, "Case 1", "true", "false"))
-			evalList.add(0, Eval(0, "Eval 1", "false"))*/
-
 			lifecycleScope.launch {
 				caseList.add(0, Case(0, "Case 1", "true", "false"))
 				evalList.add(0, Eval(0, "Eval 1", "false"))
 				caseRepository.addToCases(caseList[0].mapToCaseUI())
 				evalRepository.addToEvaluations(evalList[0].mapToEvalUI())
 
-				for (x in 1..caseCount) {
+				for (x in 1 until caseCount) {
 					caseList.add(x, Case(x, "Case " + (x + 1), "false", "false"))
 					evalList.add(x, Eval(x, "Eval " + (x + 1), "false"))
 
@@ -87,39 +82,6 @@ class FilesFragment() : Fragment() {
 				updateUI()
 			}
 
-			/*for (x in 1..caseCount) {
-				caseList.add(x, Case(x, "Case " + (x + 1), "false", "false"))
-				//caseList[0].isCaseEnabled = "true"
-
-				evalList.add(x, Eval(x, "Eval " + (x + 1), "false"))
-
-				lifecycleScope.launch {
-					caseRepository.addToCases(caseList[x].mapToCaseUI())
-					evalRepository.addToEvaluations(evalList[x].mapToEvalUI())
-				}
-			}*/
-
-			//val caseInfoList: MutableList<CaseInfo> = mutableListOf()
-
-			/*fun getKey(caseNumber: Int, questionNumber: Int): String {
-				return "eval_" + (caseNumber + 1) + "_q" + questionNumber + "_array"
-			}*/
-
-			/*for (x in 0..<caseCount) {
-				val storyKey = "story_" + (x + 1)
-				caseInfoList.add(
-					x, CaseInfo(
-						id = x,
-						story = getStringResource(requireContext(), storyKey),
-						"",
-						"",
-						""
-								*//*question1 = getStringArrayResource(requireContext(), getKey(x, 1)).toList(),
-						question2 = getStringArrayResource(requireContext(), getKey(x, 2)).toList(),
-						question3 = getStringArrayResource(requireContext(), getKey(x, 3)).toList()*//*
-					)
-				)
-			}*/
 			sharedPreferenceFirst()
 		} else {
 			lifecycleScope.launch {
@@ -164,7 +126,6 @@ class FilesFragment() : Fragment() {
 	}
 
 	private suspend fun updateUI() {
-		// Update UI with cases
 		when (val resource = caseRepository.getCases()) {
 			is Resource.Success -> {
 				val casesUI = resource.data
@@ -179,7 +140,6 @@ class FilesFragment() : Fragment() {
 			else -> {}
 		}
 
-		// Update UI with evaluations
 		when (val resource = evalRepository.getEvaluations()) {
 			is Resource.Success -> {
 				val evalUI = resource.data
@@ -233,27 +193,15 @@ class FilesFragment() : Fragment() {
 				Toast.makeText(requireContext(), toasty, Toast.LENGTH_SHORT).show()
 			}
 			if (isEnabled == "true") {
-				FilesFragmentDirections.actionFilesFragmentToStoryFragment(id)
-				//findNavController().navigate(R.id.action_storyFragment_to_evaluationsFragment)
+				findNavController().navigate(
+					FilesFragmentDirections.actionFilesFragmentToEvaluationsFragment(id)
+				)
 			}
 			if (isEnabled == "done") {
 				val toasty = "You have already solved this evaluation"
 				Toast.makeText(requireContext(), toasty, Toast.LENGTH_SHORT).show()
 			}
 		}
-	}
-
-	private fun getStringResource(context: Context, name: String): String {
-		return resources.getString(
-			context.resources.getIdentifier(
-				name, "string", context.packageName
-			)
-		)
-	}
-
-	private fun getStringArrayResource(context: Context, name: String): Array<String> {
-		val resourceId = context.resources.getIdentifier(name, "array", context.packageName)
-		return context.resources.getStringArray(resourceId)
 	}
 
 	override fun onDestroyView() {

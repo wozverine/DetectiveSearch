@@ -19,14 +19,14 @@
         <TextView
             android:id="@+id/tvEval"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="#80FFFFFF"
             android:gravity="center_horizontal"
-            android:padding="10sp"
+            android:padding="20sp"
             android:text="@string/lorem_ipsum"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="19sp"
+            android:textSize="40sp"
             android:textStyle="bold" />
     </ScrollView>
 
@@ -47,10 +47,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/black"
-            android:minHeight="48dp"
             android:text="@string/answer"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="50sp"
             android:textStyle="bold"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
@@ -59,10 +58,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/black"
-            android:minHeight="48dp"
             android:text="@string/answer"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="50sp"
             android:textStyle="bold" />
 
         <RadioButton
@@ -70,10 +68,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/black"
-            android:minHeight="48dp"
             android:text="@string/answer"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="50sp"
             android:textStyle="bold" />
     </RadioGroup>
 
@@ -83,7 +80,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/next"
-        android:textSize="20sp"
+        android:textSize="50sp"
+        android:layout_marginBottom="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

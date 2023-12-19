@@ -47,20 +47,16 @@ class CaseRepository(
 	suspend fun updateCase(caseId: Int, changeCase: String): Resource<Unit> = withContext(Dispatchers.IO) {
 		try {
 			val case = caseDao.getCases().find { it.caseId == caseId }
-			Log.e("CaseRepository","updateCaseOutside")
 			if (case != null) {
 				var updatedCaseEntity = case.copy(
 					isCaseEnabled = changeCase
 				)
 				caseDao.updateCase(updatedCaseEntity)
-				Log.e("CaseRepository","updateCaseInside")
 				Resource.Success(Unit)
 			} else {
-				Log.e("CaseRepository", "Case not found")
 				Resource.Error("Case not found")
 			}
 		} catch (e: Exception) {
-			Log.e("CaseRepository", "Failed to update the case: ${e.message}")
 			Resource.Error("Failed to update the case: ${e.message}")
 		}
 	}

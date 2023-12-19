@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_filesFragment_to_storyFragment"
             app:destination="@id/storyFragment" />
+        <action
+            android:id="@+id/action_filesFragment_to_evaluationsFragment"
+            app:destination="@id/evaluationsFragment" />
     </fragment>
 
     <fragment
@@ -47,9 +50,6 @@
             app:destination="@id/questionsFragment"
             app:popUpTo="@id/filesFragment"
             app:popUpToInclusive="false" />
-        <action
-            android:id="@+id/action_storyFragment_to_evaluationsFragment"
-            app:destination="@id/evaluationsFragment" />
     </fragment>
 
     <fragment
@@ -93,6 +93,7 @@
         android:name="com.glitch.detectivesearch.ui.fail.FailFragment"
         android:label="fail_fragment"
         tools:layout="@layout/fragment_fail" />
+
     <fragment
         android:id="@+id/evaluationsFragment"
         android:name="com.glitch.detectivesearch.ui.evaluations.EvaluationsFragment"
@@ -100,7 +101,9 @@
         tools:layout="@layout/fragment_evaluations">
         <argument
             android:name="evalId"
-            app:argType="integer" />
+            app:argType="integer"
+            app:popUpTo="@id/filesFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
 </navigation>

@@ -31,4 +31,21 @@ class EvalRepository (
 	suspend fun clearEvaluations() = withContext(Dispatchers.IO) {
 		evalDao.clearEval()
 	}
+
+	suspend fun updateEvaluations(evalId: Int, changeEval: String): Resource<Unit> = withContext(Dispatchers.IO) {
+		try {
+			val evaluation = evalDao.getEvaluations().find { it.evalId == evalId }
+			if (evaluation != null) {
+				var updatedEvalEntity = evaluation.copy(
+					isEvalEnabled = changeEval
+				)
+				evalDao.updateEvaluations(updatedEvalEntity)
+				Resource.Success(Unit)
+			} else {
+				Resource.Error("Evaluation not found")
+			}
+		} catch (e: Exception) {
+			Resource.Error("Failed to update the evaluation: ${e.message}")
+		}
+	}
 }

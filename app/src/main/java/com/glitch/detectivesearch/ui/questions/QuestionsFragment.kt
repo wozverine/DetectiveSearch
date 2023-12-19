@@ -83,40 +83,44 @@ class QuestionsFragment : Fragment() {
 			setTexts(firstThreeList)
 
 			btnTeleport.setOnClickListener {
-				val radioButtonText = when (rgQuestions.checkedRadioButtonId) {
-					R.id.btnRadio1 -> btnRadio1.text
-					R.id.btnRadio2 -> btnRadio2.text
-					else -> btnRadio3.text
-				}
-				if (radioButtonText.toString().lowercase() == correctCountry.lowercase()) {
-					if (questionCount == 3) {
-						Toast.makeText(requireContext(), "Won", Toast.LENGTH_SHORT).show()
+				var radioButtonText: CharSequence = ""
+				if (rgQuestions.checkedRadioButtonId != -1) {
+					radioButtonText = when (rgQuestions.checkedRadioButtonId) {
+						R.id.btnRadio1 -> btnRadio1.text
+						R.id.btnRadio2 -> btnRadio2.text
+						else -> btnRadio3.text
+					}
 
-						/*val navOptions = NavOptions.Builder()
-							.setPopUpTo(R.id.filesFragment, false)
-							.build()
-
-						findNavController().navigate(QuestionsFragmentDirections.actionQuestionsFragmentToWinFragment(args.caseId), null, navOptions)*/
+					if (radioButtonText.toString().lowercase() == correctCountry.lowercase()) {
+						if (questionCount == 3) {
+							findNavController().navigate(
+								QuestionsFragmentDirections.actionQuestionsFragmentToWinFragment(
+									args.caseId
+								)
+							)
+						}
+						if (questionCount < 3) {
+							rgQuestions.clearCheck()
+							setTexts(getNewCountries())
+							questionCount += 1
+						}
+					} else {
+						val navOptions =
+							NavOptions.Builder().setPopUpTo(R.id.filesFragment, false).build()
 
 						findNavController().navigate(
-							QuestionsFragmentDirections.actionQuestionsFragmentToWinFragment(
-								args.caseId
-							)
+							R.id.action_questionsFragment_to_failFragment, null, navOptions
 						)
 					}
-					if (questionCount < 3) {
-						setTexts(getNewCountries())
-						questionCount += 1
-					}
-				} else {
-					val navOptions =
-						NavOptions.Builder().setPopUpTo(R.id.filesFragment, false).build()
 
-					findNavController().navigate(
-						R.id.action_questionsFragment_to_failFragment, null, navOptions
-					)
+				} else {
+					Toast.makeText(
+						requireContext(),
+						getString(R.string.empty_answer),
+						Toast.LENGTH_SHORT
+					).show()
 				}
-				rgQuestions.clearCheck()
+
 			}
 		}
 	}
