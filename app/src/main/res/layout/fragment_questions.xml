@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/story_back"
+    android:background="@drawable/back3"
     tools:context=".ui.questions.QuestionsFragment">
 
     <ImageView
@@ -12,12 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
-        android:background="@color/black"
+        android:background="@drawable/turkey_1"
         android:contentDescription="@string/story"
         app:layout_constraintBottom_toTopOf="@id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -32,25 +33,26 @@
             android:id="@+id/tvQuestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#80FFFFFF"
-            android:padding="12sp"
-            android:text="@string/story_1"
+            android:background="#98FFFFFF"
+            android:paddingHorizontal="16sp"
+            android:paddingVertical="20sp"
+            android:text="@string/Turkey_1"
             android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
     </ScrollView>
 
-
     <RadioGroup
         android:id="@+id/rgQuestions"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10sp"
-        android:background="#80FFFFFF"
+        android:background="#98FFFFFF"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="5sp"
+        android:orientation="vertical"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
         app:layout_constraintBottom_toTopOf="@id/btnTeleport"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +66,8 @@
             android:text="@string/answer"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <RadioButton
             android:id="@+id/btnRadio2"
@@ -94,6 +97,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10sp"
         android:text="@string/teleport"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

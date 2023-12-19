@@ -5,86 +5,107 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back3"
-    tools:context=".ui.evaluations.EvaluationsFragment">
+    tools:context=".ui.questions.QuestionsFragment">
+
+    <ImageView
+        android:id="@+id/ivCountry"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="50sp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/turkey_1"
+        android:contentDescription="@string/story"
+        app:layout_constraintBottom_toTopOf="@id/scrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck" />
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/rgEval"
+        android:layout_height="0sp"
+        android:layout_marginBottom="32dp"
+        android:paddingHorizontal="50sp"
+        app:layout_constraintBottom_toTopOf="@id/rgQuestions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/ivCountry">
 
         <TextView
-            android:id="@+id/tvEval"
+            android:id="@+id/tvQuestion"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="#80FFFFFF"
-            android:gravity="center_horizontal"
-            android:padding="20sp"
-            android:text="@string/lorem_ipsum"
-            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:background="#98FFFFFF"
+            android:paddingHorizontal="30sp"
+            android:paddingVertical="10sp"
+            android:text="@string/Turkey_1"
+            android:textAlignment="textStart"
             android:textColor="@color/black"
-            android:textSize="40sp"
+            android:textSize="34sp"
             android:textStyle="bold" />
     </ScrollView>
 
     <RadioGroup
-        android:id="@+id/rgEval"
+        android:id="@+id/rgQuestions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="#80FFFFFF"
-        app:layout_constraintBottom_toTopOf="@id/btnNextEval"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="#98FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="10sp"
+        app:layout_constraintBottom_toTopOf="@id/btnTeleport"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scrollView"
-        app:layout_constraintVertical_chainStyle="packed">
+        app:layout_constraintTop_toBottomOf="@id/scrollView">
 
         <RadioButton
-            android:id="@+id/rbEval1"
+            android:id="@+id/btnRadio1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/black"
+            android:minHeight="48sp"
             android:text="@string/answer"
             android:textColor="@color/black"
-            android:textSize="50sp"
+            android:textSize="34sp"
             android:textStyle="bold"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
         <RadioButton
-            android:id="@+id/rbEval2"
+            android:id="@+id/btnRadio2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/black"
+            android:minHeight="48sp"
             android:text="@string/answer"
             android:textColor="@color/black"
-            android:textSize="50sp"
+            android:textSize="34sp"
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/rbEval3"
+            android:id="@+id/btnRadio3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/black"
+            android:minHeight="48sp"
             android:text="@string/answer"
             android:textColor="@color/black"
-            android:textSize="50sp"
+            android:textSize="34sp"
             android:textStyle="bold" />
     </RadioGroup>
 
     <Button
-        android:id="@+id/btnNextEval"
+        android:id="@+id/btnTeleport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/next"
-        android:textSize="50sp"
         android:layout_marginBottom="30sp"
+        android:text="@string/teleport"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rgEval" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
