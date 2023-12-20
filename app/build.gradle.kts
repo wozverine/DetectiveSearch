@@ -65,4 +65,6 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.1")
+    //google-play
+    implementation ("com.google.android.play:integrity:1.3.0")
 }
