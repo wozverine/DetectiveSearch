@@ -1,8 +1,9 @@
 # DetectiveSearch
 
 I made this app in 2020 using Java and activities. I decided to convert the code the code to Kotlin.
-<h3>In progress...</h3>
+<h3>Fully Converted to Kotlin</h3>
 <br></br>
+Play Store LINK: https://play.google.com/store/apps/details?id=com.glitch.detectivesearch&hl=en&gl=US
 
  ## Java Screens - 2020
 | Cases                                                                                                       | Story                                                                                                       | Questions                                                                                                   |
